@@ -1,7 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import ReactDOM from "react-dom";
-import "../style/Login.css";
+import "../styles/Login.css";
 import logo from "../assets/logo.png";
 //nav
 import { Routes, Route, useNavigate } from "react-router-dom";

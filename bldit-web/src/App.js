@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 import "./App.css";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
@@ -21,6 +22,17 @@ function App() {
       <Footer/>
     </Router>
   );
+=======
+import Login from "./components/Login";
+import React from "react";
+import "./App.css";
+import NavTest from "./components/NavTest";
+
+function App() {
+  return <Login />;
+  // return <h1>test</h1>;
+  // return <NavTest />;
+>>>>>>> Stashed changes
 }
 
 export default App;

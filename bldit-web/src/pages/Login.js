@@ -120,8 +120,8 @@ function LoginForm() {
       <div className="login-form">
         {/* <img src={logo} className="logo" id="logo" alt="Built it logo" /> */}
         {/* {isSubmitted ? <div>User is successfully logged in</div> : renderForm} */}
-        {isSubmitted ? <Navigate to="/home" /> : renderForm}
-
+        {/*{isSubmitted ? <Navigate to="/home" /> : renderForm}*/}
+        {renderForm}
         {/* define routes */}
         <Routes>
           <Route exact path="/signup" element={<SignUp />} />

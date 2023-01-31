@@ -6,7 +6,7 @@ import "../styles/Home.css";
 import { Routes, Route, useNavigate } from "react-router-dom";
 import Projects from "./Projects";
 
-function Home() {
+const Home = () => {
   //Navigation
 
   const navigate = useNavigate();
@@ -25,9 +25,9 @@ function Home() {
         </div>
       </div>
       {/* define routes */}
-      <Routes>
-        <Route exact path="/projects" element={<Projects />} />
-      </Routes>
+      {/*<Routes>*/}
+      {/*  <Route exact path="/projects" element={<Projects />} />*/}
+      {/*</Routes>*/}
       {/* Navigation */}
       <button type="click" onClick={navigateToProjects}>
         Projects

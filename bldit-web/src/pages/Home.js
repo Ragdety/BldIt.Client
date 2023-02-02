@@ -24,16 +24,12 @@ const Home = () => {
           <p> System that allows developers to automate their tasks.</p>
         </div>
       </div>
-      {/* define routes */}
-      {/*<Routes>*/}
-      {/*  <Route exact path="/projects" element={<Projects />} />*/}
-      {/*</Routes>*/}
-      {/* Navigation */}
+
       <button type="click" onClick={navigateToProjects}>
         Projects
       </button>
     </div>
   );
-}
+};
 
 export default Home;

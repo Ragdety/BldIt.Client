@@ -152,6 +152,7 @@ function RegistrationForm() {
 
   return (
     <div className="app">
+      //rendering form
       <div className="login-form">{renderForm}</div>
     </div>
   );

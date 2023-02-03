@@ -1,11 +1,3 @@
-<<<<<<< HEAD
-import React, { Component } from "react";
-
-function SignUp() {
-  return (
-    <div>
-      <h1>Sign Up</h1>
-=======
 import React from "react";
 import { useState, useEffect } from "react";
 import "../styles/Login.css";
@@ -160,18 +152,9 @@ function RegistrationForm() {
 
   return (
     <div className="app">
-<<<<<<< Updated upstream
-      //rendering form
-=======
->>>>>>> Stashed changes
       <div className="login-form">{renderForm}</div>
->>>>>>> Registration
     </div>
   );
 }
 
-<<<<<<< HEAD
-export default SignUp;
-=======
 export default RegistrationForm;
->>>>>>> Registration

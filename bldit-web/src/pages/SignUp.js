@@ -152,7 +152,10 @@ function RegistrationForm() {
 
   return (
     <div className="app">
+<<<<<<< Updated upstream
       //rendering form
+=======
+>>>>>>> Stashed changes
       <div className="login-form">{renderForm}</div>
     </div>
   );

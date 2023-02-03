@@ -18,6 +18,7 @@ function LoginForm() {
   const [errors, setErrors] = useState([]);
   const [error, setError] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
+<<<<<<< HEAD
   const [token, setToken] = useState("")
   
   // // React States
@@ -58,11 +59,78 @@ function LoginForm() {
     });
   }
 
+=======
+  const [token, setToken] = useState("");
+
+  // // React States
+  // const [isSubmitted, setIsSubmitted] = useState(false);
+
+  const login = async () => {
+    //We're calling the backend api here
+    await BlditApi.post("/identity/login", {
+      //This is the data we want to send (username and password)
+      //which come from the react states
+      UserNameOrEmail: usernameOrEmail,
+      Password: password,
+    })
+      .then((response) => {
+        //"THEN" once we send the request, we get a response
+
+        //With some data in it:
+        const data = response.data;
+        console.log(data);
+
+        //We set the errors to false since we successfully logged in
+        setError(false);
+        setErrors([]);
+        setIsSuccess(true);
+
+        //And we set the jwt token (which contains the user information)
+        setToken(data.token);
+        console.log(token);
+      })
+      .catch((e) => {
+        //This point is reached if the api returned a 4xx response (meaning there was an error/problem)
+
+        //The data is the JSON payload the api returns (which contains the errors)
+        const data = e.response.data;
+        console.log(data);
+
+        //These are the errors given by the API which we set to the errors state so we can render them out
+        setErrors(data.Errors);
+        setError(true);
+      });
+  };
+
+>>>>>>> Registration
   const handleSubmit = async (event) => {
     //Prevent page reload
     event.preventDefault();
     //navigate("/home");
     await login();
+<<<<<<< HEAD
+=======
+  };
+
+  const handleChange = (event, name) => {
+    //Define the login user data
+    const user = {};
+
+    //This comes from the form input values
+    user[name] = event.target.value;
+
+    //Set the appropriate fields and states
+    switch (name) {
+      case "usernameOrEmail":
+        setUsernameOrEmail(user.usernameOrEmail);
+        break;
+      case "password":
+        setPassword(user.password);
+        break;
+      default:
+        break;
+    }
+>>>>>>> Registration
   };
   
   const handleChange = (event, name) => {
@@ -110,12 +178,30 @@ function LoginForm() {
       <form onSubmit={handleSubmit}>
         <div className="input-container">
           <label>Username Or Email</label>
+<<<<<<< HEAD
           <input type="text" name="uname" required onChange={(e) => handleChange(e, 'usernameOrEmail')}/>
+=======
+          <input
+            type="text"
+            name="uname"
+            required
+            onChange={(e) => handleChange(e, "usernameOrEmail")}
+          />
+>>>>>>> Registration
           {/* {renderErrorMessage("uname")} */}
         </div>
         <div className="input-container">
           <label>Password </label>
+<<<<<<< HEAD
           <input type="password" name="pass" required onChange={(e) => handleChange(e, 'password')}/>
+=======
+          <input
+            type="password"
+            name="pass"
+            required
+            onChange={(e) => handleChange(e, "password")}
+          />
+>>>>>>> Registration
           {/* {renderErrorMessage("pass")} */}
         </div>
 
@@ -134,20 +220,32 @@ function LoginForm() {
         </button>
       </div>
       {/*We render the errors here (if any)*/}
+<<<<<<< HEAD
       {error && <p style={{color: 'red', marginTop: 5}}>{errors.map(error => (
           error
       ))}</p>}
+=======
+      {error && (
+        <p style={{ color: "red", marginTop: 5 }}>
+          {errors.map((error) => error)}
+        </p>
+      )}
+>>>>>>> Registration
     </div>
   );
 
   return (
     <div className="app">
       <div className="login-form">
+<<<<<<< HEAD
         {isSuccess ? 
             <div>
               User is successfully logged in
             </div> 
             : renderForm}
+=======
+        {isSuccess ? <div>User is successfully logged in</div> : renderForm}
+>>>>>>> Registration
       </div>
     </div>
   );

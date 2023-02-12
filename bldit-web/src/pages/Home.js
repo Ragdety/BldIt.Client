@@ -4,8 +4,8 @@ import "../styles/Home.css";
 
 //navigation
 import { Routes, Route, useNavigate } from "react-router-dom";
-import Projects from "./Projects";
-
+import Navbar from "../components/Navbar";
+import Footer from "../components/Footer";
 const Home = () => {
   //Navigation
 
@@ -18,16 +18,17 @@ const Home = () => {
 
   return (
     <div className="content">
+      <Navbar />
       <div className="home" style={{ backgroundImage: `url(${BannerImage})` }}>
         <div className="headerContainer">
           <h1> Auto Mates </h1>
           <p> System that allows developers to automate their tasks.</p>
+          <button type="click" onClick={navigateToProjects}>
+            Projects
+          </button>
         </div>
       </div>
-
-      <button type="click" onClick={navigateToProjects}>
-        Projects
-      </button>
+      <Footer />
     </div>
   );
 };

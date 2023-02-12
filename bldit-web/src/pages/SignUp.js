@@ -9,70 +9,86 @@ import { useNavigate } from "react-router-dom";
 import Home from "./Home";
 import BlditApi from "../api/bldit-api";
 
-function RegistrationForm() {
+function SignUp() {
   const [firstName, setFirstName] = useState(null);
   const [lastName, setLastName] = useState(null);
   const [email, setEmail] = useState(null);
   const [userName, setUserName] = useState(null);
   const [password, setPassword] = useState(null);
   const [confirmPassword, setConfirmPassword] = useState(null);
-  const [loading, setLoading] = useState(false);
-  const [posts, setPosts] = useState([]);
+  const [errors, setErrors] = useState([]);
+  const [error, setError] = useState(false);
+  const [token, setToken] = useState("");
+  const [isSuccess, setIsSuccess] = useState(false);
 
-  const registration = async () => {
-    //We're calling the backend api here
-    await BlditApi.post("/identity/registration", {
-      // This is the data we want to send (firstName,
-      //   lastName,
-      //   email,
-      //   userName,
-      //   password,
-      //   confirmPassword)
-      //which come from the react states
-      FirstName: firstName,
-      LastName: lastName,
-      Email: email,
-      UserName: userName,
-      Password: password,
-      ConfirmPassword: confirmPassword,
+  const register = async () => {
+    if (password !== confirmPassword) {
+      setErrors(["Passwords do not match"]);
+      setError(true);
+      setIsSuccess(false);
+      return;
+    }
+    
+    const response = await BlditApi.post("/identity/register", {
+      firstName: firstName,
+      lastName: lastName,
+      email: email,
+      userName: userName,
+      password: password
     });
+    
+    if (response.status === 200) {
+      const data = response.data;
+      console.log(data)
+
+      setError(false);
+      setErrors([]);
+
+      setToken(data.token);
+      console.log(token);
+      
+      //TODO: Redirect to home page with the user signed in
+      return;
+    }
+    
+    //Error handling
+    const data = response.data;
+    console.log(data);
+    setErrors(data.Errors)
+    setError(true);
   };
 
   const handleInputChange = (e) => {
     const { id, value } = e.target;
-    if (id === "firstName") {
-      setFirstName(value);
-    }
-    if (id === "lastName") {
-      setLastName(value);
-    }
-    if (id === "email") {
-      setEmail(value);
-    }
-    if (id === "userName") {
-      setUserName(value);
-    }
-    if (id === "password") {
-      setPassword(value);
-    }
-    if (id === "confirmPassword") {
-      setConfirmPassword(value);
+    
+    switch (id) {
+        case "firstName":
+            setFirstName(value);
+            break;
+        case "lastName":
+            setLastName(value);
+            break;
+        case "email":
+            setEmail(value);
+            break;
+        case "userName":
+            setUserName(value);
+            break;
+        case "password":
+            setPassword(value);
+            break;
+        case "confirmPassword":
+            setConfirmPassword(value);
+            break;
+        default:
+            break;
     }
   };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    console.log(
-      firstName,
-      lastName,
-      email,
-      userName,
-      password,
-      confirmPassword
-    );
+    await register();
   };
-
-  //registration form
 
   const renderForm = (
     <div className="form">
@@ -144,16 +160,21 @@ function RegistrationForm() {
         </div>
 
         <div className="input-container">
-          <input type="submit" value="Sign" />
+          <input type="submit" value="Sign Up" />
         </div>
       </form>
+
+      {error && (
+          <p style={{ color: "red", marginTop: 5 }}>
+            {errors.map((error) => error)}
+          </p>
+      )}
     </div>
   );
 
   return (
     <div className="app">
-      //rendering form
-      <div className="login-form">{renderForm}</div>
+      {isSuccess ? <p>Registration successful</p> : <div className="login-form">{renderForm}</div>}
     </div>
   );
 }

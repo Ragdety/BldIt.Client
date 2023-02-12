@@ -18,7 +18,7 @@ function LoginForm() {
   const [errors, setErrors] = useState([]);
   const [error, setError] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
-  const [token, setToken] = useState("")
+  const [token, setToken] = useState("");
   
   // // React States
   // const [isSubmitted, setIsSubmitted] = useState(false);

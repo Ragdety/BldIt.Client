@@ -18,7 +18,7 @@ function LoginForm() {
   const [errors, setErrors] = useState([]);
   const [error, setError] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
-  const [token, setToken] = useState("")
+  const [token, setToken] = useState("");
   
   // // React States
   // const [isSubmitted, setIsSubmitted] = useState(false);
@@ -110,12 +110,22 @@ function LoginForm() {
       <form onSubmit={handleSubmit}>
         <div className="input-container">
           <label>Username Or Email</label>
-          <input type="text" name="uname" required onChange={(e) => handleChange(e, 'usernameOrEmail')}/>
+          <input
+            type="text"
+            name="uname"
+            required
+            onChange={(e) => handleChange(e, "usernameOrEmail")}
+          />
           {/* {renderErrorMessage("uname")} */}
         </div>
         <div className="input-container">
           <label>Password </label>
-          <input type="password" name="pass" required onChange={(e) => handleChange(e, 'password')}/>
+          <input
+            type="password"
+            name="pass"
+            required
+            onChange={(e) => handleChange(e, "password")}
+          />
           {/* {renderErrorMessage("pass")} */}
         </div>
 
@@ -134,9 +144,11 @@ function LoginForm() {
         </button>
       </div>
       {/*We render the errors here (if any)*/}
-      {error && <p style={{color: 'red', marginTop: 5}}>{errors.map(error => (
-          error
-      ))}</p>}
+      {error && (
+        <p style={{ color: "red", marginTop: 5 }}>
+          {errors.map((error) => error)}
+        </p>
+      )}
     </div>
   );
 

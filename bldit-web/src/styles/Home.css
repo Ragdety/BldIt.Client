@@ -93,3 +93,69 @@
     color: black;
   }
 }
+
+.container {
+  display: flex;
+  align-items: center;
+  background-color: lightblue;
+}
+img {
+  max-width: 100%;
+  padding-right: 10px;
+}
+.image {
+  flex-basis: 100%;
+  order: 2;
+  object-position : right;
+  padding-left: 100px;
+  width: 900px;
+  height: auto;
+}
+.text {
+  color: black;
+  padding-left: 59px;
+  font: 10px "Fira Sans", serif;
+}
+
+.container1 {
+  display: flex;
+  align-items: center;
+  background-color: lightcyan;
+}
+img {
+  max-width: 100%;
+  display: inline-block;
+}
+.image1 {
+  flex-basis: 100%;
+  width: 900px;
+  height: auto;
+}
+.text1 {
+  color: black;
+  padding-right: 24px;
+  font: 10px "Fira Sans", serif;
+}
+
+.container2 {
+  display: flex;
+  align-items: center;
+  background-color: lightblue;
+}
+img {
+  max-width: 80%;
+  display: inline-block;
+  padding-right: 10px;
+}
+.image2 {
+  flex-basis: 100%;
+  order: 2;
+  padding-left: 100px;
+  width: 900px;
+  height: auto;
+}
+.text2 {
+  color: black;
+  padding-left: 24px;
+  font: 10px "Fira Sans", serif;
+}

@@ -35,7 +35,7 @@ const Projects = () => {
         style = {
             { backgroundImage: `url(${BannerImage})` } } >
         <
-        h2 > Projects Dashboard < /h2> <
+        h2 className= "projectsHeader"> Projects Dashboard < /h2> <
         div className = "oneTimeButton" >
         <
         button class = "new" > Create Project < /button> <

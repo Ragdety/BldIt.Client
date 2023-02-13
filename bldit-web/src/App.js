@@ -1,10 +1,10 @@
 import React from "react";
-import AppRoutes from "./components/Routes";
+import Routes from "./components/Routes";
 
 import "./App.css";
 
 function App() {
-  return <AppRoutes />;
+  return <Routes />;
 }
 
 export default App;

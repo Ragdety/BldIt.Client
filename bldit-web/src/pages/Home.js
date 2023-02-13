@@ -4,7 +4,6 @@ import "../styles/Home.css";
 
 //navigation
 import { Routes, Route, useNavigate } from "react-router-dom";
-
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 const Home = () => {

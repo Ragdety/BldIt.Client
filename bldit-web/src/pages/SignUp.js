@@ -28,60 +28,60 @@ function SignUp() {
       setIsSuccess(false);
       return;
     }
-    
+
     const response = await BlditApi.post("/identity/register", {
       firstName: firstName,
       lastName: lastName,
       email: email,
       userName: userName,
-      password: password
+      password: password,
     });
-    
+
     if (response.status === 200) {
       const data = response.data;
-      console.log(data)
+      console.log(data);
 
       setError(false);
       setErrors([]);
 
       setToken(data.token);
       console.log(token);
-      
+
       //TODO: Redirect to home page with the user signed in
       return;
     }
-    
+
     //Error handling
     const data = response.data;
     console.log(data);
-    setErrors(data.Errors)
+    setErrors(data.Errors);
     setError(true);
   };
 
   const handleInputChange = (e) => {
     const { id, value } = e.target;
-    
+
     switch (id) {
-        case "firstName":
-            setFirstName(value);
-            break;
-        case "lastName":
-            setLastName(value);
-            break;
-        case "email":
-            setEmail(value);
-            break;
-        case "userName":
-            setUserName(value);
-            break;
-        case "password":
-            setPassword(value);
-            break;
-        case "confirmPassword":
-            setConfirmPassword(value);
-            break;
-        default:
-            break;
+      case "firstName":
+        setFirstName(value);
+        break;
+      case "lastName":
+        setLastName(value);
+        break;
+      case "email":
+        setEmail(value);
+        break;
+      case "userName":
+        setUserName(value);
+        break;
+      case "password":
+        setPassword(value);
+        break;
+      case "confirmPassword":
+        setConfirmPassword(value);
+        break;
+      default:
+        break;
     }
   };
 
@@ -165,16 +165,20 @@ function SignUp() {
       </form>
 
       {error && (
-          <p style={{ color: "red", marginTop: 5 }}>
-            {errors.map((error) => error)}
-          </p>
+        <p style={{ color: "red", marginTop: 5 }}>
+          {errors.map((error) => error)}
+        </p>
       )}
     </div>
   );
 
   return (
     <div className="app">
-      {isSuccess ? <p>Registration successful</p> : <div className="login-form">{renderForm}</div>}
+      {isSuccess ? (
+        <p>Registration successful</p>
+      ) : (
+        <div className="login-form">{renderForm}</div>
+      )}
     </div>
   );
 }

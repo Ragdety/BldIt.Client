@@ -19,44 +19,46 @@ function LoginForm() {
   const [error, setError] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
   const [token, setToken] = useState("");
-  
+
   // // React States
   // const [isSubmitted, setIsSubmitted] = useState(false);
-  
+
   const login = async () => {
     //We're calling the backend api here
-    await BlditApi.post('/identity/login', {
+    await BlditApi.post("/identity/login", {
       //This is the data we want to send (username and password)
       //which come from the react states
       UserNameOrEmail: usernameOrEmail,
-      Password: password
-    }).then(response => {
-      //"THEN" once we send the request, we get a response
-      
-      //With some data in it:
-      const data = response.data;
-      console.log(data)
-      
-      //We set the errors to false since we successfully logged in
-      setError(false);
-      setErrors([]);
-      setIsSuccess(true);
+      Password: password,
+    })
+      .then((response) => {
+        //"THEN" once we send the request, we get a response
 
-      //And we set the jwt token (which contains the user information)
-      setToken(data.token);
-      console.log(token);
-    }).catch(e => {
-      //This point is reached if the api returned a 4xx response (meaning there was an error/problem)
-      
-      //The data is the JSON payload the api returns (which contains the errors)
-      const data = e.response.data;
-      console.log(data);
-      
-      //These are the errors given by the API which we set to the errors state so we can render them out
-      setErrors(data.Errors)
-      setError(true);
-    });
-  }
+        //With some data in it:
+        const data = response.data;
+        console.log(data);
+
+        //We set the errors to false since we successfully logged in
+        setError(false);
+        setErrors([]);
+        setIsSuccess(true);
+
+        //And we set the jwt token (which contains the user information)
+        setToken(data.token);
+        console.log(token);
+      })
+      .catch((e) => {
+        //This point is reached if the api returned a 4xx response (meaning there was an error/problem)
+
+        //The data is the JSON payload the api returns (which contains the errors)
+        const data = e.response.data;
+        console.log(data);
+
+        //These are the errors given by the API which we set to the errors state so we can render them out
+        setErrors(data.Errors);
+        setError(true);
+      });
+  };
 
   const handleSubmit = async (event) => {
     //Prevent page reload
@@ -64,26 +66,26 @@ function LoginForm() {
     //navigate("/home");
     await login();
   };
-  
+
   const handleChange = (event, name) => {
     //Define the login user data
-    const user = {}
-    
-    //This comes from the form input values 
+    const user = {};
+
+    //This comes from the form input values
     user[name] = event.target.value;
-    
+
     //Set the appropriate fields and states
     switch (name) {
-      case 'usernameOrEmail':
+      case "usernameOrEmail":
         setUsernameOrEmail(user.usernameOrEmail);
         break;
-      case 'password':
+      case "password":
         setPassword(user.password);
         break;
       default:
         break;
     }
-  }
+  };
 
   //Navigation
   const navigate = useNavigate();
@@ -111,6 +113,7 @@ function LoginForm() {
         <div className="input-container">
           <label>Username Or Email</label>
           <input
+            id="userName-Email"
             type="text"
             name="uname"
             required
@@ -121,6 +124,7 @@ function LoginForm() {
         <div className="input-container">
           <label>Password </label>
           <input
+            id="password"
             type="password"
             name="pass"
             required
@@ -130,16 +134,20 @@ function LoginForm() {
         </div>
 
         <div className="input-container">
-          <input type="submit" value="Login"/>
+          <input id="submit" type="submit" value="Login" />
         </div>
       </form>
 
       {/* Navigation */}
       <div className="button-container">
-        <button type="click" onClick={navigateToSignup}>
+        <button id="signUp" type="click" onClick={navigateToSignup}>
           Sign Up
         </button>
-        <button type="click" onClick={navigateForgotPassword}>
+        <button
+          id="forgotPassword"
+          type="click"
+          onClick={navigateForgotPassword}
+        >
           Forgot Password
         </button>
       </div>
@@ -155,11 +163,7 @@ function LoginForm() {
   return (
     <div className="app">
       <div className="login-form">
-        {isSuccess ? 
-            <div>
-              User is successfully logged in
-            </div> 
-            : renderForm}
+        {isSuccess ? <div>User is successfully logged in</div> : renderForm}
       </div>
     </div>
   );

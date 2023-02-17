@@ -91,7 +91,12 @@ function LoginForm() {
   
   const navigate = useNavigate();
   const location = useLocation();
-  const from = location.state.from.pathname || "/";
+  let from = "/";
+  
+  //If the state is not null, then we come from a protected route 
+  if(location.state) {
+    from = location.state.from.pathname || "/";
+  }
 
   const navigateToSignup = () => {
     //  navigate to /signup

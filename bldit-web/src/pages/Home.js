@@ -28,12 +28,11 @@ const Home = () => {
           </button>
         </div>
       </div>
-      <div class="container">
-        <div class="image">
-          <img
-            src={require("../assets/cont-int.jpeg")}/>
+      <div className="container">
+        <div className="image">
+          <img src={require("../assets/cont-int.jpeg")}/>
         </div>
-        <div class="text">
+        <div className="text">
           <h1>Continuous Integration</h1>
           <h2>
             Continuous integration (CI) is a software development practice in
@@ -42,12 +41,12 @@ const Home = () => {
           </h2>
         </div>
       </div>
-      <div class="container1">
-        <div class="image1">
+      <div className="container1">
+        <div className="image1">
           <img
             src={require("../assets/cont-testing.png")}/>
         </div>
-        <div class="text1">
+        <div className="text1">
           <h1>Continuous Testing</h1>
           <h2>
             Continuous testing (CT) is a software development process in which
@@ -58,12 +57,11 @@ const Home = () => {
           </h2>
         </div>
       </div>
-      <div class="container2">
-        <div class="image2">
-          <img
-            src={require("../assets/cont-deliv.jpeg")}/>
+      <div className="container2">
+        <div className="image2">
+          <img src={require("../assets/cont-deliv.jpeg")}/>
         </div>
-        <div class="text2">
+        <div className="text2">
           <h1>Continuous Delivery</h1>
           <h2>
             Continuous Delivery is the ability to get changes of all

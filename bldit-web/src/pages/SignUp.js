@@ -7,7 +7,7 @@ import logo from "../assets/logo.png";
 import { useNavigate } from "react-router-dom";
 
 import Home from "./Home";
-import BlditApi from "../api/bldit-api";
+//import BlditApi from "../api/bldit-api";
 
 function SignUp() {
   const [firstName, setFirstName] = useState(null);
@@ -29,13 +29,13 @@ function SignUp() {
       return;
     }
     
-    const response = await BlditApi.post("/identity/register", {
-      firstName: firstName,
-      lastName: lastName,
-      email: email,
-      userName: userName,
-      password: password
-    });
+    const response = "" //await BlditApi.post("/identity/register", {
+    //   firstName: firstName,
+    //   lastName: lastName,
+    //   email: email,
+    //   userName: userName,
+    //   password: password
+    // });
     
     if (response.status === 200) {
       const data = response.data;

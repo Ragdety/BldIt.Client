@@ -5,6 +5,7 @@ import Home from "../pages/Home";
 import Login from "../pages/Login";
 import SignUp from "../pages/SignUp";
 import Projects from "../pages/Projects";
+import Edit from "../pages/Edit"
 import Jobs from "../pages/Jobs";
 
 function AppRoutes() {
@@ -14,6 +15,7 @@ function AppRoutes() {
       <Route path="/login" element={<Login />} />
       <Route path="/signup" element={<SignUp />} />
       <Route path="/projects" element={<Projects />} />
+      <Route path="/edit" element={<Edit />} />
       <Route path="/jobs" element={<Jobs />} />
     </Routes>
   );

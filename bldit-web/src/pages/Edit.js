@@ -46,12 +46,10 @@ return (
                 <div class="edit-container">
                 <h2 id="editHeader"> Edit Project</h2>
                     <form id="editProjectDetails"> 
-                       <label for="Created Date"> Create Date: </label> 
-                       <input type="text" id="c_date" name="c_date"/> 
-                        <label for="Updated Date"> Update Date: </label> 
-                       <input type="text" id="u_date"/> 
-                       <label for="Project Name"> Project Name: </label> 
-                       <input type="text" id="project_name"/>
+                     <label for="Project Name"> Project Name: </label> 
+                     <input type="text" id="project_name"/>
+                     <label for="Project Details"> Project Details: </label> 
+                     <input type="text" id="u_date"/>
                        <div class="savebutton">
                     <input type="submit" id="save" value="Save"/> </div>
                     </form>

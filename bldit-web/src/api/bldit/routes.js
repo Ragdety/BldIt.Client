@@ -2,6 +2,8 @@ export const routes = {
   identity: {
     login: "/identity/login",
     register: "/identity/register",
+    refresh: "/identity/refresh",
+    logout: "/identity/logout",
   },
   projects: {
     getProjects: "/projects",

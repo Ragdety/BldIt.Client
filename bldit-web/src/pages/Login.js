@@ -37,7 +37,7 @@ function LoginForm() {
       if (loginApi.success === true) {
         const data = loginApi.data;
         //And we set the jwt token (which contains the user information)
-        setAuth({ token: data.token });
+        setAuth({ token: data.token, refreshToken: data.refreshToken });
         
         //Navigate to the page the user was trying to access (if any)
         navigate(from, { replace: true });
@@ -66,7 +66,6 @@ function LoginForm() {
     await loginApi.request(usernameOrEmail, password);
     
     //Properties of the loginApi will be set by the useApi hook
-    console.log(loginApi);
   };
   
   const handleChange = (event, name) => {

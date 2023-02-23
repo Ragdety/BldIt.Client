@@ -1,16 +1,13 @@
 import React from "react";
 import BannerImage from "../assets/AMbg.jpeg";
 import "../styles/Home.css";
-
-//navigation
-import { Routes, Route, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
+
 const Home = () => {
   //Navigation
-
   const navigate = useNavigate();
-
   const navigateToProjects = () => {
     //  navigate to /projects
     navigate("/projects");

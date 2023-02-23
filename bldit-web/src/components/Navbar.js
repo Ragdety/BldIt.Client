@@ -1,14 +1,38 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Logo from "../assets/AM-logo.jpeg";
 import { Link } from "react-router-dom";
 import { FaBars } from "react-icons/fa";
 import "../styles/Navbar.css";
 import useAuth from "../hooks/useAuth";
+import useRefreshToken from "../hooks/useRefreshToken";
 
 function Navbar() {
   const [openLinks, setOpenLinks] = useState(false);
+  const [isNotLoggedIn, setIsNotLoggedIn] = useState(true);
+  
   const { auth } = useAuth();
+  const refresh = useRefreshToken();
 
+  useEffect(() => {
+    const verifyRefresh = async () => {
+      try {
+        await refresh();
+        setIsNotLoggedIn(false);
+      }
+      catch(error) {
+        console.log("Error refreshing token", error.response.data);
+        setIsNotLoggedIn(true);
+      }
+    }
+
+    //If there is no jwt token in auth, refresh it
+    !auth.token ? verifyRefresh() : setIsNotLoggedIn(false);
+    
+    if(!auth) {
+      setIsNotLoggedIn(true);
+    }
+  }, []);
+  
   const toggleNavbar = () => {
     setOpenLinks(!openLinks);
   };
@@ -27,19 +51,22 @@ function Navbar() {
       </div>
       <div className="rightSide">
         <Link to="/"> Home </Link>
-        {auth.token ? (
-          <>
-            <Link to="/Projects"> Projects </Link>
-            <Link to="/Jobs"> Jobs </Link>
-            <Link to="/Logout"> Logout </Link>
-          </>
-        ) : (
-          <>
-            <Link to="/Login"> Login </Link>
-            <Link to="/SignUp"> Sign up </Link>
-          </>
-        )}
-        
+        <>
+          {isNotLoggedIn
+            ? (
+              <>
+                <Link to="/Login"> Login </Link>
+                <Link to="/SignUp"> Sign up </Link>
+              </>
+            )
+            : (
+              <>
+                <Link to="/Projects"> Projects </Link>
+                <Link to="/Jobs"> Jobs </Link>
+                <Link to="/Logout">Logout</Link>
+              </>
+            )}
+        </>
         <button onClick={toggleNavbar}>
           { <FaBars />}
         </button>

@@ -12,7 +12,9 @@ const Logout = () => {
     }
     signOut().then(() => 
       navigate("/", {replace: true})
-    );
+    ).catch(_ => {
+      navigate("/", {replace: true})
+    });
   }, []);
   
   return (

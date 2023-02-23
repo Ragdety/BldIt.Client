@@ -25,11 +25,7 @@ function AppRoutes() {
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/404" element={<NotFound />} />
-
-
-        <Route element={<RequireAuth />}>
-          <Route path="/logout" element={<Logout />} />
-        </Route>
+        <Route path="/logout" element={<Logout />} />
         
         {/*protected routes*/}
         <Route element={<PersistLogin/>}>

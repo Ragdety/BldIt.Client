@@ -20,7 +20,6 @@ function Navbar() {
         setIsNotLoggedIn(false);
       }
       catch(error) {
-        console.log("Error refreshing token", error.response.data);
         setIsNotLoggedIn(true);
       }
     }

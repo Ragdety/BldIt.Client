@@ -15,7 +15,7 @@ const PersistLogin = () => {
         await refresh();
       }
       catch(error) {
-        console.log("Error refreshing token", error.response.data);
+        //console.log("Error refreshing token", error.response.data);
       }
       finally {
         setIsLoading(false);

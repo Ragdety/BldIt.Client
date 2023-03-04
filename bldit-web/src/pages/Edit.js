@@ -19,8 +19,6 @@ const Edit = () => {
     navigate("/Jobs");
   };
 
-
-
   const [projectDetails, setprojectDetails] = useState(data);
   const [newFormData, setNewFormData] = useState({
       createdAt: ' ',
@@ -37,30 +35,25 @@ const Edit = () => {
   // openEditForm --> openPopup()
   // popup --> editProjectDetails
 
- 
-
-return (
-  <div className="content">
-    <Navbar />
-    <div className="EditProjects" style={{ backgroundImage: `url(${BannerImage})` }}>
-                <div class="edit-container">
-                <h2 id="editHeader"> Edit Project</h2>
-                    <form id="editProjectDetails"> 
-                     <label for="Project Name"> Project Name: </label> 
-                     <input type="text" id="project_name"/>
-                     <label for="Project Details"> Project Details: </label> 
-                     <input type="text" id="u_date"/>
-                       <div class="savebutton">
-                    <input type="submit" id="save" value="Save"/> </div>
-                    </form>
-                    </div>
-
-
-
-</div>
-    <Footer />
-  </div>
-);
+  return (
+    <div className="content">
+      <Navbar />
+      <div className="EditProjects" style={{ backgroundImage: `url(${BannerImage})` }}>
+        <div class="edit-container">
+          <h2 id="editHeader"> Edit Project</h2>
+          <form id="editProjectDetails">
+            <label for="Project Name"> Project Name: </label>
+            <input type="text" id="project_name"/>
+            <label for="Project Details"> Project Details: </label>
+            <input type="text" id="u_date"/>
+            <div class="savebutton">
+              <input type="submit" id="save" value="Save"/> </div>
+          </form>
+        </div>
+      </div>
+      <Footer />
+    </div>
+  );
 };
 
 export default Edit;

@@ -1,68 +1,71 @@
 import React from "react";
-import { useState } from "react";
-import ReactDOM from "react-dom";
+import { useState, useRef, useEffect, useContext } from "react";
 import "../styles/Login.css";
 import logo from "../assets/logo.png";
-
-//nav
-import { Routes, Route, useNavigate } from "react-router-dom";
-
-import SignUp from "./SignUp";
-import ForgotPassword from "./ForgotPassword";
-import Home from "./Home";
-import BlditApi from "../api/bldit-api";
+import { useNavigate, useLocation } from "react-router-dom";
+import useApi from "../hooks/useApi";
+import identityApi from "../services/auth";
+import useAuth from "../hooks/useAuth";
+import Error from "../components/Error";
 
 function LoginForm() {
+  const loginApi = useApi(identityApi.login);
+  const { setAuth } = useAuth();
+  
+  //Refs
+  const userRef = useRef(null);
+  const errRef = useRef(null);
+  
+  //States
   const [usernameOrEmail, setUsernameOrEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [errors, setErrors] = useState([]);
-  const [error, setError] = useState(false);
-  const [isSuccess, setIsSuccess] = useState(false);
-  const [token, setToken] = useState("");
+  const [error, setError] = useState('');
   
-  // // React States
-  // const [isSubmitted, setIsSubmitted] = useState(false);
+  //Effects
+  useEffect(() => {
+    userRef.current.focus();
+  }, []);
   
-  const login = async () => {
-    //We're calling the backend api here
-    await BlditApi.post('/identity/login', {
-      //This is the data we want to send (username and password)
-      //which come from the react states
-      UserNameOrEmail: usernameOrEmail,
-      Password: password
-    }).then(response => {
-      //"THEN" once we send the request, we get a response
-      
-      //With some data in it:
-      const data = response.data;
-      console.log(data)
-      
-      //We set the errors to false since we successfully logged in
-      setError(false);
-      setErrors([]);
-      setIsSuccess(true);
+  useEffect(() => {
+    setError('');
+  }, [usernameOrEmail, password]);
+  
+  //This effect is called after the loginApi.request is called
+  //Used to handle post login actions, only when loginApi changes this will be called
+  useEffect(() => {
+    const handlePostLogin = () => {
+      if (loginApi.success === true) {
+        const data = loginApi.data;
+        //And we set the jwt token (which contains the user information)
+        setAuth({ token: data.token, refreshToken: data.refreshToken });
+        
+        //Navigate to the page the user was trying to access (if any)
+        navigate(from, { replace: true });
+        return;
+      }
 
-      //And we set the jwt token (which contains the user information)
-      setToken(data.token);
-      console.log(token);
-    }).catch(e => {
-      //This point is reached if the api returned a 4xx response (meaning there was an error/problem)
+      //Error handling:
+      if (loginApi.status === 400) {
+        setError("Invalid username or password");
+      } 
+      else if (loginApi.status === 500) {
+        setError("Unexpected error");
+      }
       
-      //The data is the JSON payload the api returns (which contains the errors)
-      const data = e.response.data;
-      console.log(data);
-      
-      //These are the errors given by the API which we set to the errors state so we can render them out
-      setErrors(data.Errors)
-      setError(true);
-    });
-  }
-
+      if (error) errRef.current.focus();
+    };
+    handlePostLogin();
+  }, [loginApi.status]);
+  
+  //Functions
   const handleSubmit = async (event) => {
     //Prevent page reload
     event.preventDefault();
-    //navigate("/home");
-    await login();
+
+    //We're calling the backend api here
+    await loginApi.request(usernameOrEmail, password);
+    
+    //Properties of the loginApi will be set by the useApi hook
   };
   
   const handleChange = (event, name) => {
@@ -83,21 +86,22 @@ function LoginForm() {
       default:
         break;
     }
-  }
-
-  //Navigation
+  };
+  
   const navigate = useNavigate();
+  const location = useLocation();
+  let from = "/";
+  
+  //If the state is not null, then we come from a protected route 
+  if(location.state) {
+    from = location.state.from.pathname || "/";
+  }
 
   const navigateToSignup = () => {
     //  navigate to /signup
     navigate("/signup");
   };
-
-  const navigateToHome = (event) => {
-    //  navigate to /signup
-    navigate("/home");
-  };
-
+  
   const navigateForgotPassword = () => {
     //navigate to /forgotpassword
     navigate("/forgotpassword");
@@ -113,6 +117,7 @@ function LoginForm() {
           <input
             type="text"
             name="uname"
+            ref={userRef}
             required
             onChange={(e) => handleChange(e, "usernameOrEmail")}
           />
@@ -144,22 +149,14 @@ function LoginForm() {
         </button>
       </div>
       {/*We render the errors here (if any)*/}
-      {error && (
-        <p style={{ color: "red", marginTop: 5 }}>
-          {errors.map((error) => error)}
-        </p>
-      )}
+      {error && <Error msg={error} ref={errRef}/>}
     </div>
   );
 
   return (
     <div className="app">
       <div className="login-form">
-        {isSuccess ? 
-            <div>
-              User is successfully logged in
-            </div> 
-            : renderForm}
+        {renderForm}
       </div>
     </div>
   );

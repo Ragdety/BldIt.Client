@@ -1,0 +1,28 @@
+[{
+        "id": "f0cc16a1-fdbf-462f-b4c7-e020b46237a6",
+        "deleted": false,
+        "createdAt": "2022-12-18T05:16:54.928Z",
+        "updatedAt": "2022-12-18T05:16:54.929Z",
+        "projectName": "Test1",
+        "creatorId": "d8e30f4b-f893-4dae-b67f-ab404d9ca736",
+        "description": null
+    },
+    {
+        "id": "9f95632b-10cf-4870-93ca-fbfe6946bf99",
+        "deleted": false,
+        "createdAt": "2023-02-13T22:33:48.276Z",
+        "updatedAt": "2023-02-13T22:33:48.276Z",
+        "projectName": "Test2",
+        "creatorId": "d8e30f4b-f893-4dae-b67f-ab404d9ca736",
+        "description": "Sample Project 2"
+    },
+    {
+        "id": "b4f80150-b94a-4818-84a5-4bf88f21f582",
+        "deleted": false,
+        "createdAt": "2023-02-13T22:34:25.008Z",
+        "updatedAt": "2023-02-13T22:34:25.008Z",
+        "projectName": "Test 3",
+        "creatorId": "d8e30f4b-f893-4dae-b67f-ab404d9ca736",
+        "description": "Another project for this presentation"
+    }
+]

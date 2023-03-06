@@ -46,8 +46,11 @@ function LoginForm() {
 
       //Error handling:
       if (loginApi.status === 400) {
-        setError("Invalid username or password");
-      } 
+        setError("Invalid username/email or password");
+      }
+      else if (loginApi.status === 401) {
+        setError("Invalid username/email or password");
+      }
       else if (loginApi.status === 500) {
         setError("Unexpected error");
       }

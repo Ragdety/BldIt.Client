@@ -20,7 +20,7 @@ export default (apiFunc) => {
             setSuccess(true);
             setErrorData([]);
         } catch (err) {
-            console.log(err)
+            //console.log(err)
             setSuccess(false);
 
             setErrorData(err.response.data);

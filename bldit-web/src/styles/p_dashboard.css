@@ -11,6 +11,14 @@
         font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
     }
     
+    .projectsTitle {
+        color: white;
+    }
+    
+    .content {
+        position: relative;
+    }
+    
     .projectsHeader {
         color: rgb(254, 255, 254);
         font-size: 75px;
@@ -53,7 +61,6 @@
     }
     
     .new {
-        color: black;
         border: none;
         border-radius: 3px;
         cursor: pointer;
@@ -70,7 +77,6 @@
     }
     
     .return {
-        color: black;
         border: none;
         border-radius: 3px;
         cursor: pointer;

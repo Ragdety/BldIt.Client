@@ -27,7 +27,7 @@ const Home = () => {
       </div>
       <div className="container">
         <div className="image">
-          <img src={require("../assets/cont-int.jpeg")}/>
+          <img src={require("../assets/cont-int.jpeg")} alt="ci"/>
         </div>
         <div className="text">
           <h1>Continuous Integration</h1>

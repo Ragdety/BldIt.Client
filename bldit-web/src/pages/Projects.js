@@ -85,7 +85,7 @@ const Projects = () => {
     <div className="content">
       <Navbar />
       <div className="projectsDash" style={{ backgroundImage: `url(${BannerImage})` }}>
-        <h2> Projects Dashboard</h2>
+        <h2 className="projectsTitle"> Projects Dashboard</h2>
         <div className = "oneTimeButton">
           <button class="new"> Create Project  </button>
           <button className="return" onClick={(e) => handleClick(e)}> Fetch Projects</button>

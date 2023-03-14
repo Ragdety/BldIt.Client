@@ -11,6 +11,7 @@ import RequireAuth from "./RequireAuth";
 import NotFound from "./NotFound";
 import PersistLogin from "./PersistLogin";
 import Logout from "../pages/Logout";
+import BuildLogs from "../pages/BuildLogs";
 
 function AppRoutes() {
   return (
@@ -26,6 +27,7 @@ function AppRoutes() {
         <Route path="/signup" element={<SignUp />} />
         <Route path="/404" element={<NotFound />} />
         <Route path="/logout" element={<Logout />} />
+        <Route path="/logs" element={<BuildLogs />} />
         
         {/*protected routes*/}
         <Route element={<PersistLogin/>}>

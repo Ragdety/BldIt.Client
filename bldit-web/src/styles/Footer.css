@@ -6,6 +6,8 @@
   justify-content: center;
   flex-direction: column;
   padding-top: 10px;
+  position: absolute;
+  bottom: 0;
 }
 
 p {

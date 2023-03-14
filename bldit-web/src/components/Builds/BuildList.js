@@ -2,7 +2,21 @@ import React from 'react';
 import {Button, Typography} from "@material-tailwind/react";
 import {Link} from "react-router-dom";
 
-const BuildList = ({builds}) => {
+const BuildList = () => {
+  const builds = [
+    {
+      status: "Success",
+      number: 1,
+      date: "2021-05-01 12:00:00",
+    },
+    {
+      status: "Success",
+      number: 1,
+      date: "2021-05-01 12:00:00",
+    }
+  ]
+  
+  
   return (
     <>
     {builds.length ? (

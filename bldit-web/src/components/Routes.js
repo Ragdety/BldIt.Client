@@ -30,12 +30,12 @@ function AppRoutes() {
         <Route path="/logout" element={<Logout />} />
         <Route path="/logs" element={<BuildLogs />} />
         <Route path="/job" element={<Job />} />
-        <Route path="/jobs" element={<Jobs />} />
 
         {/*protected routes*/}
         <Route element={<PersistLogin />}>
           <Route element={<RequireAuth />}>
             <Route path="/projects" element={<Projects />} />
+            <Route path="/jobs" element={<Jobs />} />
           </Route>
         </Route>
       </Route>

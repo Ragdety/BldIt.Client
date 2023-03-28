@@ -28,14 +28,14 @@ function AppRoutes() {
         <Route path="/signup" element={<SignUp />} />
         <Route path="/404" element={<NotFound />} />
         <Route path="/logout" element={<Logout />} />
-        <Route path="/logs" element={<BuildLogs />} />
-        <Route path="/job" element={<Job />} />
         
         {/*protected routes*/}
         <Route element={<PersistLogin/>}>
           <Route element={<RequireAuth />}>
             <Route path="/projects" element={<Projects />} />
             <Route path="/jobs" element={<Jobs />} />
+            <Route path="/job" element={<Job />} />
+            <Route path="/logs/:buildId" element={<BuildLogs />} />
           </Route>
         </Route>
       </Route>

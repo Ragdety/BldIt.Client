@@ -14,6 +14,7 @@ import Logout from "../pages/Logout";
 import BuildLogs from "../pages/BuildLogs";
 import CreateProject from "../pages/CreateProject";
 import ForgotPassword from "../pages/ForgotPassword";
+import Job from "../pages/Job";
 
 function AppRoutes() {
   return (
@@ -38,6 +39,8 @@ function AppRoutes() {
           <Route element={<RequireAuth />}>
             <Route path="/projects" element={<Projects />} />
             <Route path="/jobs" element={<Jobs />} />
+            <Route path="/job" element={<Job />} />
+            <Route path="/logs/:buildId" element={<BuildLogs />} />
           </Route>
         </Route>
       </Route>

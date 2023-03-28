@@ -1,30 +1,44 @@
+const baseRoutes = {
+  identity: "/identity",
+  projects: "/projects",
+  jobs: "/projects/{projectId}/jobs",
+  jobConfigs: "/projects/{projectId}/jobs/{jobName}/configs",
+  builds: "/projects/{projectId}/jobs/{jobName}/builds",
+  buildConfigs: "/projects/{projectId}/jobs/{jobName}/builds/{buildNumber}/configs",
+}
+
 export const routes = {
   identity: {
-    login: "/identity/login",
-    register: "/identity/register",
-    refresh: "/identity/refresh",
-    logout: "/identity/logout",
+    login: `${baseRoutes.identity}/login`,
+    register: `${baseRoutes.identity}/register`,
+    refresh: `${baseRoutes.identity}/refresh`,
+    logout: `${baseRoutes.identity}/logout`,
   },
   projects: {
-    getProjects: "/projects",
-    getProject: "/projects/:id",
-    createProject: "/projects",
-    updateProject: "/projects/:id",
-    deleteProject: "/projects/:id",
+    getProjects: `${baseRoutes.projects}`,
+    getProject: `${baseRoutes.projects}/{projectId}`,
+    createProject: `${baseRoutes.projects}`,
+    updateProject: `${baseRoutes.projects}/{projectId}`,
+    deleteProject: `${baseRoutes.projects}/{projectId}`,
   },
   jobs: {
-    getJobs: "/jobs",
-    getJob: "/jobs/:id",
-    createJob: "/jobs",
-    updateJob: "/jobs/:id",
-    deleteJob: "/jobs/:id",
+    getJobs: `${baseRoutes.jobs}`,
+    getJob: `${baseRoutes.jobs}/{jobName}`,
+    createJob: `${baseRoutes.jobs}`,
+    updateJob: `${baseRoutes.jobs}/{jobName}`,
+    deleteJob: `${baseRoutes.jobs}/{jobName}`,
+  },
+  jobConfigs: {
+    
   },
   builds: {
-    getBuilds: "/builds",
-    getBuild: "/builds/:id",
-    createBuild: "/builds",
-    updateBuild: "/builds/:id",
-    deleteBuild: "/builds/:id",
+    buildJob: `${baseRoutes.jobs}/{jobName}/build`,
+    getBuilds: `${baseRoutes.builds}`,
+    getBuild: `${baseRoutes.builds}/{buildNumber}`,
+    getBuildLog: `${baseRoutes.builds}/{buildNumber}/log`,
+  },
+  buildConfigs: {
+    
   },
 }
 

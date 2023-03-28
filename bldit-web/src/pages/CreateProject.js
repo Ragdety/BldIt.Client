@@ -2,35 +2,17 @@ import React from "react";
 import { useState, useEffect } from "react";
 import "../styles/Login.css";
 import logo from "../assets/logo.png";
-
 import { useNavigate } from "react-router-dom";
-
-import Home from "./Home";
-import useApi from "../hooks/useApi";
 import Error from "../components/Error";
+import useAxiosPrivate from "../hooks/useAxiosPrivate";
 
-import axios from "axios";
-
-function CreateProject()
-{
-
+function CreateProject() {
+    const axiosPrivate = useAxiosPrivate();
     // States
     const [projectName, setProjectName] = useState(null);
     const [description, setDescription] = useState(null);
     const [errors, setErrors] = useState([]);
     const [error, setError] = useState(false);
-
-    const jwt = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ0ZXN0QHRlc3QuY29tIiwianRpIjoiZGY5ODE0NTAtNjNjOC00YjYwLWI3MGEtZmRiNTFmYWIxYzMwIiwiZW1haWwiOiJ0ZXN0QHRlc3QuY29tIiwidXNlcm5hbWUiOiJUZXN0IiwiZmlyc3ROYW1lIjoiVGVzdCIsImxhc3ROYW1lIjoiVGVzdCIsImlkIjoiZDhlMzBmNGItZjg5My00ZGFlLWI2N2YtYWI0MDRkOWNhNzM2IiwibmJmIjoxNjc2Nzg3MjE4LCJleHAiOjE2ODQ0NzY4MTgsImlhdCI6MTY3Njc4NzIxOH0.DxxwcT-HwygXxp879NJJMCs2lqISBpLd0S04T1eUaHc";
-
-    const commonHeaders = {
-        "Content-type": "application/json",
-        Authorization: `Bearer ${jwt}`
-    }
-
-    const projectsClient = axios.create({
-        baseURL: 'http://localhost:5001/api/v1',
-        headers: commonHeaders
-    });
 
     const handleInputChange = (e) => {
         const { id, value } = e.target;
@@ -52,15 +34,8 @@ function CreateProject()
             projectName,
             description,
         };
-        // console.log(newProject);
-        // await fetch('http://localhost:5000/api/v1/identity/register', {
-        //         method: 'POST',
-        //         headers: {
-        //             'Content-Type': 'application/json',
-        //         },
-        //         body: JSON.stringify(newProject),
-        //     })
-        await projectsClient.post('/projects', {
+        
+        await axiosPrivate.post('/projects', {
             projectName: projectName,
             description: description
         })
@@ -72,7 +47,6 @@ function CreateProject()
                 setErrors([]);
 
                 navigate("/projects");
-                return;
             })
             .catch(error => {
                 // console.log(error.response.data.detail);

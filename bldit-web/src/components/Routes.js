@@ -12,6 +12,8 @@ import NotFound from "./NotFound";
 import PersistLogin from "./PersistLogin";
 import Logout from "../pages/Logout";
 import BuildLogs from "../pages/BuildLogs";
+import CreateProject from "../pages/CreateProject";
+import ForgotPassword from "../pages/ForgotPassword";
 import Job from "../pages/Job";
 
 function AppRoutes() {
@@ -28,6 +30,9 @@ function AppRoutes() {
         <Route path="/signup" element={<SignUp />} />
         <Route path="/404" element={<NotFound />} />
         <Route path="/logout" element={<Logout />} />
+        <Route path="/logs" element={<BuildLogs />} />
+        <Route path="/createproject" element={<CreateProject />} />
+        <Route path="/forgotpassword" element={<ForgotPassword />} />
         
         {/*protected routes*/}
         <Route element={<PersistLogin/>}>

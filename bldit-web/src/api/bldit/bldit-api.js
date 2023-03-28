@@ -28,6 +28,5 @@ const identityClient = axios.create({
 export { 
     blditClientPrivate,
     identityClient,
-    blditClient,
-    githubClient
+    blditClient
 }

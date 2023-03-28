@@ -6,7 +6,7 @@
   justify-content: center;
   flex-direction: column;
   padding-top: 10px;
-  position: absolute;
+  position: relative;
   bottom: 0;
 }
 

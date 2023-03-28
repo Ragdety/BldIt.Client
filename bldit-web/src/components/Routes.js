@@ -7,6 +7,7 @@ import SignUp from "../pages/SignUp";
 import Projects from "../pages/Projects";
 import Edit from "../pages/Edit"
 import Jobs from "../pages/Jobs";
+import EditJob from "../pages/EditJob";
 
 function AppRoutes() {
   return (
@@ -17,6 +18,7 @@ function AppRoutes() {
       <Route path="/projects" element={<Projects />} />
       <Route path="/edit" element={<Edit />} />
       <Route path="/jobs" element={<Jobs />} />
+      <Route path="/EditJob" element={<EditJob />} />
     </Routes>
   );
 }

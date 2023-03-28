@@ -76,7 +76,13 @@ const Projects = () => {
         description: ' ',
     })
 
-  const openEditForm = () => {
+    const navigateToCreateProject = () => {
+        //navigate to /forgotpassword
+        navigate("/createproject");
+    };
+
+
+    const openEditForm = () => {
     //  navigate to /Edit Form
     navigate("/Edit");
   };
@@ -87,7 +93,7 @@ const Projects = () => {
       <div className="projectsDash" style={{ backgroundImage: `url(${BannerImage})` }}>
         <h2 className="projectsTitle"> Projects Dashboard</h2>
         <div className = "oneTimeButton">
-          <button class="new"> Create Project  </button>
+          <button class="new" onClick={navigateToCreateProject}> Create Project  </button>
           <button className="return" onClick={(e) => handleClick(e)}> Fetch Projects</button>
         </div>
 

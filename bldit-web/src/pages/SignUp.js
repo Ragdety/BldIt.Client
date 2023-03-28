@@ -3,14 +3,23 @@ import { useState, useEffect } from "react";
 import "../styles/Login.css";
 import logo from "../assets/logo.png";
 
+import identityApi from "../services/auth";
+import useAuth from "../hooks/useAuth";
+
 //nav
 import { useNavigate } from "react-router-dom";
 
 import Home from "./Home";
+import useApi from "../hooks/useApi";
+import Error from "../components/Error";
 //import BlditApi from "../api/bldit-api";
 
 function SignUp() {
-  const [firstName, setFirstName] = useState(null);
+    const registerAPI = useApi(identityApi.register);
+    const { setAuth } = useAuth();
+
+    // States
+    const [firstName, setFirstName] = useState(null);
   const [lastName, setLastName] = useState(null);
   const [email, setEmail] = useState(null);
   const [userName, setUserName] = useState(null);
@@ -21,6 +30,8 @@ function SignUp() {
   const [token, setToken] = useState("");
   const [isSuccess, setIsSuccess] = useState(false);
 
+
+  // Functions
   const register = async () => {
     if (password !== confirmPassword) {
       setErrors(["Passwords do not match"]);
@@ -28,34 +39,72 @@ function SignUp() {
       setIsSuccess(false);
       return;
     }
-    
-    const response = "" //await BlditApi.post("/identity/register", {
+
+      // const newUser = {
+      //     firstName,
+      //     lastName,
+      //     email,
+      //     userName,
+      //     password,
+      // };
+
+      // const response = await fetch('http://localhost:5000/api/v1/identity/register', {
+      //     method: 'POST',
+      //     headers: {
+      //         'Content-Type': 'application/json',
+      //     },
+      //     body: JSON.stringify(newUser),
+      // });
+
+    // const response = await identityApi.register(firstName, lastName, email, userName, password); //await BlditApi.post("/identity/register", {
     //   firstName: firstName,
     //   lastName: lastName,
     //   email: email,
     //   userName: userName,
     //   password: password
     // });
-    
-    if (response.status === 200) {
-      const data = response.data;
-      console.log(data)
 
-      setError(false);
-      setErrors([]);
+      await identityApi.register(firstName, lastName, email, userName, password)
+          .then(response => {
+              const data = response.data;
+                  console.log(data)
 
-      setToken(data.token);
-      console.log(token);
-      
-      //TODO: Redirect to home page with the user signed in
-      return;
-    }
-    
-    //Error handling
-    const data = response.data;
-    console.log(data);
-    setErrors(data.Errors)
-    setError(true);
+                  setError(false);
+                  setErrors([]);
+
+                  setToken(data.token);
+                  console.log(token);
+
+                  //TODO: Redirect to home page with the user signed
+                  navigate("/");
+                  return;
+          })
+          .catch(error => {
+              setErrors(error.response.data.Errors);
+              setError(true);
+          });
+
+    //   console.log(response.data);
+    // if (response.status === 200) {
+    //     const data = response.data;
+    //     console.log(data)
+    //
+    //     setError(false);
+    //     setErrors([]);
+    //
+    //     setToken(data.token);
+    //     console.log(token);
+    //
+    //     //TODO: Redirect to home page with the user signed
+    //     navigate("/");
+    //     return;
+    // }
+    //
+    // //Error handling
+    // const data = response.data;
+    // console.log(data);
+    // setErrors(data.Errors)
+    // setError(true);
   };
 
   const handleInputChange = (e) => {
@@ -89,6 +138,9 @@ function SignUp() {
     event.preventDefault();
     await register();
   };
+
+    const navigate = useNavigate();
+
 
   const renderForm = (
     <div className="form">
@@ -163,7 +215,6 @@ function SignUp() {
           <input type="submit" value="Sign Up" />
         </div>
       </form>
-
       {error && (
           <p style={{ color: "red", marginTop: 5 }}>
             {errors.map((error) => error)}

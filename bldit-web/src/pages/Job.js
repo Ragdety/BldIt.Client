@@ -4,6 +4,7 @@ import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import JobCard from "../components/Jobs/JobCard";
 import BuildList from "../components/Builds/BuildList";
+import "../styles/Jobs.css";
 
 const Job = () => {
   const jobId = "SomeId"

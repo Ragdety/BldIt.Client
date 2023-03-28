@@ -1,0 +1,105 @@
+       * {
+           background-color: rgb(6, 3, 97);
+           background-color: rgb(33, 30, 93);
+       }
+       
+       form {
+           margin: 2em 0;
+           padding: 1em 2em;
+           border: solid 1px #000;
+           border-radius: 10px;
+           width: 50%;
+           margin-left: 25%;
+           margin-right: 25%;
+           background-color: rgb(255, 255, 255);
+       }
+       
+       section {
+           background-color: rgb(255, 255, 255);
+       }
+       
+       h2 {
+           background-color: rgb(255, 255, 255);
+       }
+       
+       label {
+           display: block;
+           margin-top: 1em;
+           width: 200px;
+           background-color: #ffffff;
+       }
+       
+       input {
+           padding: .5em;
+           border: solid 1pxx #000;
+       }
+       
+       text {
+           min-width: 50%;
+           min-height: 8em;
+           padding: .5em;
+           border: solid 1px #000;
+       }
+       
+       textarea {
+           min-width: 50%;
+           min-height: 8em;
+           padding: .5em;
+           border: solid 1px #000;
+           background-color: #ffffff;
+       }
+       
+       input[type=submit] {
+           display: block;
+           min-width: 15%;
+           min-height: 10px;
+           background-color: rgb(10, 6, 137);
+           margin-left: 15%;
+       }
+       /* Not j_ref */
+       
+       .back {
+           font-size: 10px;
+           background-color: #b16120;
+       }
+       
+       #back {
+           font-size: 10px;
+           background-color: #e8ff84;
+       }
+       /*        .idFromJSON {
+           background-color: #fdfdfd;
+           font-size: 15px !important;
+           font-weight: bold !important;
+           width: 350px !important;
+           text-align: center!important; 
+           padding: 10px !important;
+           clear: both;
+           float: left;
+           margin-right: 15px;
+       } 
+       */
+       
+       .idFromJSON {
+           background-color: #fdfdfd;
+           text-align: right;
+           clear: both;
+           float: left;
+           margin-left: 40px !important;
+           font-size: 15px !important;
+           font-weight: bold !important;
+           width: 350px !important;
+           margin-top: -18px;
+       }
+       
+       .typeFromJSON {
+           background-color: #fdfdfd;
+           text-align: left;
+           clear: both;
+           float: left;
+           margin-left: 85px;
+           font-size: 15px !important;
+           font-weight: bold !important;
+           width: 350px !important;
+           margin-top: -18px;
+       }

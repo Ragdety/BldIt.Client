@@ -1,15 +1,15 @@
 import React from 'react';
 import { useEffect } from "react";
-import { axiosPrivate } from "../api/bldit/bldit-api";
+import { blditClientPrivate } from "../api/bldit/bldit-api";
 import useAuth from "./useAuth";
 import useRefreshToken from "./useRefreshToken";
 
-const useAxiosPrivate = () => {
+const useBldItPrivate = () => {
   const refresh = useRefreshToken();
   const { auth } = useAuth();
   
   useEffect(() => {
-    const requestIntercept = axiosPrivate.interceptors.request.use(
+    const requestIntercept = blditClientPrivate.interceptors.request.use(
       config => {
         //Append the auth token to the request header for all axios requests
         if(!config.headers.Authorization) {
@@ -19,7 +19,7 @@ const useAxiosPrivate = () => {
       }, (error) => Promise.reject(error)
     );
     
-    const responseIntercept = axiosPrivate.interceptors.response.use(
+    const responseIntercept = blditClientPrivate.interceptors.response.use(
       response => response,
       async (error) => {
         const prevRequest = error.config;
@@ -32,7 +32,7 @@ const useAxiosPrivate = () => {
           prevRequest.headers['Authorization'] = `Bearer ${newToken}`;
           
           //Re-try the previous request
-          return axiosPrivate(prevRequest);
+          return blditClientPrivate(prevRequest);
 
           //Before:
           //Redirect to Login page (for now)
@@ -47,12 +47,12 @@ const useAxiosPrivate = () => {
     
     return () => {
       //Remove interceptors
-      axiosPrivate.interceptors.request.eject(requestIntercept);
-      axiosPrivate.interceptors.response.eject(responseIntercept);
+      blditClientPrivate.interceptors.request.eject(requestIntercept);
+      blditClientPrivate.interceptors.response.eject(responseIntercept);
     };
   }, [auth, refresh]);
   
-  return axiosPrivate;
+  return blditClientPrivate;
 };
 
-export default useAxiosPrivate;
+export default useBldItPrivate;

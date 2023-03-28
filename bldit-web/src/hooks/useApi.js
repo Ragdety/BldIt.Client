@@ -6,6 +6,7 @@ export default (apiFunc) => {
     const [success, setSuccess] = useState(false);
     const [status, setStatus] = useState(0);
     const [errorData, setErrorData] = useState([]);
+    const [errorMessage, setErrorMessage] = useState("");
     const [loading, setLoading] = useState(false);
 
     //args is the parameters for the axios call depending on the apiFunc passed in
@@ -19,11 +20,13 @@ export default (apiFunc) => {
 
             setSuccess(true);
             setErrorData([]);
+            setErrorMessage("");
         } catch (err) {
             //console.log(err)
             setSuccess(false);
-
+            console.log("Error response: ", err.response);
             setErrorData(err.response.data);
+            setErrorMessage(err.response.statusText);
             setStatus(err.response.status);
         } finally {
             setLoading(false);
@@ -35,6 +38,7 @@ export default (apiFunc) => {
         success,
         status,
         errorData,
+        errorMessage,
         loading,
         request
     };

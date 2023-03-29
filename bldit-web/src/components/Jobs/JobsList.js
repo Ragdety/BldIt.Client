@@ -4,6 +4,7 @@ import {Link, useNavigate} from "react-router-dom";
 import {useEffect} from "react";
 import routes from "../../api/bldit/routes";
 import useBldItPrivate from "../../hooks/useAxiosPrivate";
+import moment from "moment";
 
 const JobsList = ({ projectId }) => {
   const [jobs, setJobs] = useState([]);
@@ -53,7 +54,7 @@ const JobsList = ({ projectId }) => {
                   Last Build Number
                 </th>
                 <th scope="col" className="px-6 py-3">
-                  Last Run Date
+                  Creation Date
                 </th>
                 <th scope="col" className="px-6 py-3"></th>
                 <th scope="col" className="px-6 py-3"></th>
@@ -91,7 +92,7 @@ const JobsList = ({ projectId }) => {
                     scope="row"
                     className="px-6 py-4 font-light text-gray-900 whitespace-nowrap dark:text-white"
                   >
-                    {job.createdAt}
+                    {moment(job.createdAt).format('DD MMM, YYYY')}
                   </th>
                   <th
                     scope="row"

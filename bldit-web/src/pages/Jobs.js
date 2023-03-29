@@ -2,25 +2,28 @@ import React from "react";
 import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
 import Background from "../assets/pic.png";
-import JobsCard from "../components/Jobs/JobsCard";
-import JobsBuildList from "../components/Builds/JobsBuildList";
+import ProjectCard from "../components/Projects/ProjectCard";
+import JobsList from "../components/Jobs/JobsList";
+import "../styles/Jobs.css";
+import {useParams} from "react-router-dom";
 
 const Jobs = () => {
-  const jobsId = "SomeId";
+  const { projectId } = useParams();
 
   return (
-    <div>
+    <>
       <Navbar />
       <div className="jobs" style={{ backgroundImage: `url(${Background})` }}>
         <div className="pb-6">
-          <JobsCard id={jobsId} />
+          <ProjectCard id={projectId} />
         </div>
         <div>
-          <JobsBuildList />
+          <JobsList projectId={projectId}/>
         </div>
       </div>
       <Footer />
-    </div>
+    </>
+      
   );
 };
 

@@ -2,14 +2,17 @@ import React from "react";
 import { useState, useEffect } from "react";
 import "../styles/Login.css";
 import logo from "../assets/logo.png";
-
-//nav
+import identityApi from "../services/auth";
+import useAuth from "../hooks/useAuth";
 import { useNavigate } from "react-router-dom";
-
-import Home from "./Home";
+import useApi from "../hooks/useApi";
 //import BlditApi from "../api/bldit-api";
 
 function SignUp() {
+  const registerAPI = useApi(identityApi.register);
+  const { setAuth } = useAuth();
+
+  // States
   const [firstName, setFirstName] = useState(null);
   const [lastName, setLastName] = useState(null);
   const [email, setEmail] = useState(null);
@@ -21,6 +24,8 @@ function SignUp() {
   const [token, setToken] = useState("");
   const [isSuccess, setIsSuccess] = useState(false);
 
+
+  // Functions
   const register = async () => {
     if (password !== confirmPassword) {
       setErrors(["Passwords do not match"]);
@@ -28,60 +33,51 @@ function SignUp() {
       setIsSuccess(false);
       return;
     }
-    
-    const response = "" //await BlditApi.post("/identity/register", {
-    //   firstName: firstName,
-    //   lastName: lastName,
-    //   email: email,
-    //   userName: userName,
-    //   password: password
-    // });
-    
-    if (response.status === 200) {
-      const data = response.data;
-      console.log(data)
 
-      setError(false);
-      setErrors([]);
+    await identityApi.register(firstName, lastName, email, userName, password)
+      .then(response => {
+        const data = response.data;
+        console.log(data)
 
-      setToken(data.token);
-      console.log(token);
-      
-      //TODO: Redirect to home page with the user signed in
-      return;
-    }
-    
-    //Error handling
-    const data = response.data;
-    console.log(data);
-    setErrors(data.Errors)
-    setError(true);
+        setError(false);
+        setErrors([]);
+
+        setToken(data.token);
+        console.log(token);
+
+        //TODO: Redirect to home page with the user signed
+        navigate("/");
+      })
+      .catch(error => {
+        setErrors(error.response.data.Errors);
+        setError(true);
+      });
   };
 
   const handleInputChange = (e) => {
     const { id, value } = e.target;
-    
+
     switch (id) {
-        case "firstName":
-            setFirstName(value);
-            break;
-        case "lastName":
-            setLastName(value);
-            break;
-        case "email":
-            setEmail(value);
-            break;
-        case "userName":
-            setUserName(value);
-            break;
-        case "password":
-            setPassword(value);
-            break;
-        case "confirmPassword":
-            setConfirmPassword(value);
-            break;
-        default:
-            break;
+      case "firstName":
+        setFirstName(value);
+        break;
+      case "lastName":
+        setLastName(value);
+        break;
+      case "email":
+        setEmail(value);
+        break;
+      case "userName":
+        setUserName(value);
+        break;
+      case "password":
+        setPassword(value);
+        break;
+      case "confirmPassword":
+        setConfirmPassword(value);
+        break;
+      default:
+        break;
     }
   };
 
@@ -90,6 +86,8 @@ function SignUp() {
     await register();
   };
 
+  const navigate = useNavigate();
+  
   const renderForm = (
     <div className="form">
       <img src={logo} className="logo" id="logo" alt="Built it logo" />
@@ -163,11 +161,10 @@ function SignUp() {
           <input type="submit" value="Sign Up" />
         </div>
       </form>
-
       {error && (
-          <p style={{ color: "red", marginTop: 5 }}>
-            {errors.map((error) => error)}
-          </p>
+        <p style={{ color: "red", marginTop: 5 }}>
+          {errors.map((error) => error)}
+        </p>
       )}
     </div>
   );

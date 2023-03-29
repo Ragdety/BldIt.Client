@@ -9,7 +9,7 @@ import useRefreshToken from "../hooks/useRefreshToken";
 function Navbar() {
   const [openLinks, setOpenLinks] = useState(false);
   const [isNotLoggedIn, setIsNotLoggedIn] = useState(true);
-  
+
   const { auth } = useAuth();
   const refresh = useRefreshToken();
 
@@ -26,20 +26,20 @@ function Navbar() {
 
     //If there is no jwt token in auth, refresh it
     !auth.token ? verifyRefresh() : setIsNotLoggedIn(false);
-    
+
     if(!auth) {
       setIsNotLoggedIn(true);
     }
   }, []);
-  
+
   const toggleNavbar = () => {
     setOpenLinks(!openLinks);
   };
-    
+
   return (
     <div className="navbar">
       <div className="leftSide" id={openLinks ? "open" : "close"}>
-        <img alt="logo" src={Logo} />
+        <img alt ="logo" src={Logo} />
         <div className="hiddenLinks">
           <Link to="/"> Home </Link>
           <Link to="/Projects"> Projects </Link>
@@ -51,21 +51,24 @@ function Navbar() {
       <div className="rightSide">
         <Link to="/"> Home </Link>
         <>
-          {isNotLoggedIn ? (
-            <>
-              <Link to="/Jobs"> Jobs </Link>
-              <Link to="/Login"> Login </Link>
-              <Link to="/SignUp"> Sign up </Link>
-            </>
-          ) : (
-            <>
-              <Link to="/Projects"> Projects </Link>
-              <Link to="/Jobs"> Jobs </Link>
-              <Link to="/Logout">Logout</Link>
-            </>
-          )}
+          {isNotLoggedIn
+            ? (
+              <>
+                <Link to="/Login"> Login </Link>
+                <Link to="/SignUp"> Sign up </Link>
+              </>
+            )
+            : (
+              <>
+                <Link to="/Projects"> Projects </Link>
+                <Link to="/Jobs"> Jobs </Link>
+                <Link to="/Logout">Logout</Link>
+              </>
+            )}
         </>
-        <button onClick={toggleNavbar}>{<FaBars />}</button>
+        <button onClick={toggleNavbar}>
+          { <FaBars />}
+        </button>
       </div>
     </div>
   );

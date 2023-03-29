@@ -25,13 +25,13 @@ const JobCard = ({projectId, jobName}) => {
       .replace("{jobName}", name));
   }
   const getJobApi = useApi(getJob);
-  
+
   //UseEffect to call api when component is mounted
   useEffect(() => {
     const loadJob = async () => {
       await getJobApi.request(projectId, jobName);
     }
-    
+
     loadJob();
   }, []);
 
@@ -42,21 +42,21 @@ const JobCard = ({projectId, jobName}) => {
         setJob(getJobApi.data);
         return;
       }
-      
+
       //TODO: Error handling here
-      
+
     }
 
     handleGetJob();
-    
+
   }, [getJobApi.data]);
-  
+
   return (
     <>
       <Card>
-          <Typography variant="h5" className="mb-1 mt-1 p-5">
-            {job.name}
-          </Typography>
+        <Typography variant="h5" className="mb-1 mt-1 p-5">
+          {job.name}
+        </Typography>
         <CardBody className="h-12">
           <Typography className="mb-1 mt-1">
             {job.description}

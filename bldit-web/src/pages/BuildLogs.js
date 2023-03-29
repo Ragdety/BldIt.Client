@@ -9,14 +9,14 @@ import {useParams} from "react-router-dom";
 
 const BuildLogs = () => {
   const buildStreamURL = 'http://localhost:5005/buildStream';
-  const { buildId } = useParams(); 
+  const { buildId } = useParams();
 
   const [currentRoom, setCurrentRoom] = useState("");
   const [runningBuild, setRunningBuild] = useState({});
   const [logs, setLogs] = useState([]);
 
   const logsRef = useRef(null)
-  
+
   const scrollToBottom = () => {
     logsRef.current && logsRef.current.scrollIntoView({ behavior: "smooth" })
   }
@@ -74,14 +74,14 @@ const BuildLogs = () => {
   useEffect(() => {
     scrollToBottom()
   }, [logs]);
-  
+
   useEffect(() => {
     const joinBuildLogRoom = async () => {
       await join(buildId);
     }
     joinBuildLogRoom();
   }, []);
-  
+
   return (
     <div className="content">
       <div className="content">
@@ -95,24 +95,24 @@ const BuildLogs = () => {
                   Realtime Logs
                 </h5>
               </p>
-            {/*  <button className="inline-flex items-center px-3 py-2 text-sm font-medium text-center */}
-            {/*text-white bg-green-500 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none */}
-            {/*focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"*/}
-            {/*          onClick={() => {build('f0cc16a1-fdbf-462f-b4c7-e020b46237a6', 'Test5');}}>*/}
-            {/*    Build*/}
-            {/*  </button>*/}
-             {/* <button className="inline-flex items-center px-3 py-2 text-sm font-medium text-center */}
-             {/*text-white bg-green-500 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none */}
-             {/*focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"*/}
-             {/*         onClick={async () => await join(runningBuild.id)}>*/}
-             {/*   Logs*/}
-             {/* </button>*/}
-             {/* <button className="inline-flex items-center px-3 py-2 text-sm font-medium text-center */}
-             {/*text-white bg-green-500 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none */}
-             {/*focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"*/}
-             {/*         onClick={async () => await leave()}>*/}
-             {/*   Leave*/}
-             {/* </button>*/}
+              {/*  <button className="inline-flex items-center px-3 py-2 text-sm font-medium text-center */}
+              {/*text-white bg-green-500 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none */}
+              {/*focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"*/}
+              {/*          onClick={() => {build('f0cc16a1-fdbf-462f-b4c7-e020b46237a6', 'Test5');}}>*/}
+              {/*    Build*/}
+              {/*  </button>*/}
+              {/* <button className="inline-flex items-center px-3 py-2 text-sm font-medium text-center */}
+              {/*text-white bg-green-500 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none */}
+              {/*focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"*/}
+              {/*         onClick={async () => await join(runningBuild.id)}>*/}
+              {/*   Logs*/}
+              {/* </button>*/}
+              {/* <button className="inline-flex items-center px-3 py-2 text-sm font-medium text-center */}
+              {/*text-white bg-green-500 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none */}
+              {/*focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"*/}
+              {/*         onClick={async () => await leave()}>*/}
+              {/*   Leave*/}
+              {/* </button>*/}
               <p className="mb-3 font-normal text-gray-700 dark:text-gray-400 max-h-screen overflow-y-auto max-h-72" >
                 Logs from build: {buildId}
                 {logs.map((log, index) => (

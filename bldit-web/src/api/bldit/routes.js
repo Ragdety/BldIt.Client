@@ -29,7 +29,7 @@ export const routes = {
     deleteJob: `${baseRoutes.jobs}/{jobName}`,
   },
   jobConfigs: {
-    
+
   },
   builds: {
     buildJob: `${baseRoutes.jobs}/{jobName}/build`,
@@ -38,7 +38,7 @@ export const routes = {
     getBuildLog: `${baseRoutes.builds}/{buildNumber}/log`,
   },
   buildConfigs: {
-    
+
   },
 }
 

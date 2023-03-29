@@ -50,46 +50,46 @@ function ForgotPassword() {
     };
 
     const renderForm = (
-        <div className="form">
-            <img src={logo} className="logo" id="logo" alt="Built it logo"/>
-            <form onSubmit={handleSubmit}>
+      <div className="form">
+          <img src={logo} className="logo" id="logo" alt="Built it logo"/>
+          <form onSubmit={handleSubmit}>
 
-                <div className="input-container">
-                    <input required
-                        type="email"
-                        id="email"
-                        className="form__input"
-                        value={email}
-                        onChange={(e) => handleInputChange(e)}
-                        placeholder="Email"
-                    />
-                </div>
+              <div className="input-container">
+                  <input required
+                         type="email"
+                         id="email"
+                         className="form__input"
+                         value={email}
+                         onChange={(e) => handleInputChange(e)}
+                         placeholder="Email"
+                  />
+              </div>
 
-                <div className="input-container">
-                    <input type="submit" value="Reset Password"/>
-                </div>
-            </form>
+              <div className="input-container">
+                  <input type="submit" value="Reset Password"/>
+              </div>
+          </form>
 
-            <div className="button-container">
-                <button type="click" onClick={navigateLogin}>
-                    Login
-                </button>
-                <button type="click" onClick={navigateToSignup}>
-                    Sign Up
-                </button>
-            </div>
+          <div className="button-container">
+              <button type="click" onClick={navigateLogin}>
+                  Login
+              </button>
+              <button type="click" onClick={navigateToSignup}>
+                  Sign Up
+              </button>
+          </div>
 
-            {/*We render the errors here (if any)*/}
-            {error && <Error msg={error}/>}
-        </div>
+          {/*We render the errors here (if any)*/}
+          {error && <Error msg={error}/>}
+      </div>
     );
 
     return (
-        <div className="app">
-            <div className="login-form">
-                {renderForm}
-            </div>
-        </div>
+      <div className="app">
+          <div className="login-form">
+              {renderForm}
+          </div>
+      </div>
     );
 }
 

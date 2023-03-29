@@ -25,21 +25,20 @@ function AppRoutes() {
         <Route element={<PersistLogin/>}>
           <Route path="/" element={<Home />} />
         </Route>
-        
+
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/404" element={<NotFound />} />
         <Route path="/logout" element={<Logout />} />
-        <Route path="/logs" element={<BuildLogs />} />
-        <Route path="/createproject" element={<CreateProject />} />
         <Route path="/forgotpassword" element={<ForgotPassword />} />
-        
+
         {/*protected routes*/}
         <Route element={<PersistLogin/>}>
           <Route element={<RequireAuth />}>
             <Route path="/projects" element={<Projects />} />
-            <Route path="/jobs" element={<Jobs />} />
-            <Route path="/job" element={<Job />} />
+            <Route path="/projects/:projectId/jobs" element={<Jobs />} />
+            <Route path="/createproject" element={<CreateProject />} />
+            <Route path="/projects/:projectId/jobs/:jobName" element={<Job />} />
             <Route path="/logs/:buildId" element={<BuildLogs />} />
           </Route>
         </Route>

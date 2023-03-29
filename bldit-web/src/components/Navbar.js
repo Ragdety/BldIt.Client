@@ -9,7 +9,7 @@ import useRefreshToken from "../hooks/useRefreshToken";
 function Navbar() {
   const [openLinks, setOpenLinks] = useState(false);
   const [isNotLoggedIn, setIsNotLoggedIn] = useState(true);
-  
+
   const { auth } = useAuth();
   const refresh = useRefreshToken();
 
@@ -26,16 +26,16 @@ function Navbar() {
 
     //If there is no jwt token in auth, refresh it
     !auth.token ? verifyRefresh() : setIsNotLoggedIn(false);
-    
+
     if(!auth) {
       setIsNotLoggedIn(true);
     }
   }, []);
-  
+
   const toggleNavbar = () => {
     setOpenLinks(!openLinks);
   };
-    
+
   return (
     <div className="navbar">
       <div className="leftSide" id={openLinks ? "open" : "close"}>
@@ -43,7 +43,7 @@ function Navbar() {
         <div className="hiddenLinks">
           <Link to="/"> Home </Link>
           <Link to="/Projects"> Projects </Link>
-             <Link to="/Jobs"> Jobs </Link>
+          <Link to="/Jobs"> Jobs </Link>
           <Link to="/Login"> Login </Link>
           <Link to="/SignUp"> Sign Up </Link>
         </div>

@@ -49,7 +49,7 @@ function CreateProject() {
                 navigate("/projects");
             })
             .catch(error => {
-                // console.log(error.response.data.detail);
+                console.log(error.response.data);
                 setError(error.response.data.detail);
                 // setError(true);
             });

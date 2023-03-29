@@ -25,7 +25,7 @@ const identityClient = axios.create({
     withCredentials: true
 });
 
-export { 
+export {
     blditClientPrivate,
     identityClient,
     blditClient

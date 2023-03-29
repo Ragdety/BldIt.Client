@@ -2,24 +2,18 @@ import React from "react";
 import { useState, useEffect } from "react";
 import "../styles/Login.css";
 import logo from "../assets/logo.png";
-
 import identityApi from "../services/auth";
 import useAuth from "../hooks/useAuth";
-
-//nav
 import { useNavigate } from "react-router-dom";
-
-import Home from "./Home";
 import useApi from "../hooks/useApi";
-import Error from "../components/Error";
 //import BlditApi from "../api/bldit-api";
 
 function SignUp() {
-    const registerAPI = useApi(identityApi.register);
-    const { setAuth } = useAuth();
+  const registerAPI = useApi(identityApi.register);
+  const { setAuth } = useAuth();
 
-    // States
-    const [firstName, setFirstName] = useState(null);
+  // States
+  const [firstName, setFirstName] = useState(null);
   const [lastName, setLastName] = useState(null);
   const [email, setEmail] = useState(null);
   const [userName, setUserName] = useState(null);
@@ -40,97 +34,50 @@ function SignUp() {
       return;
     }
 
-      // const newUser = {
-      //     firstName,
-      //     lastName,
-      //     email,
-      //     userName,
-      //     password,
-      // };
+    await identityApi.register(firstName, lastName, email, userName, password)
+      .then(response => {
+        const data = response.data;
+        console.log(data)
 
-      // const response = await fetch('http://localhost:5000/api/v1/identity/register', {
-      //     method: 'POST',
-      //     headers: {
-      //         'Content-Type': 'application/json',
-      //     },
-      //     body: JSON.stringify(newUser),
-      // });
+        setError(false);
+        setErrors([]);
 
-    // const response = await identityApi.register(firstName, lastName, email, userName, password); //await BlditApi.post("/identity/register", {
-    //   firstName: firstName,
-    //   lastName: lastName,
-    //   email: email,
-    //   userName: userName,
-    //   password: password
-    // });
+        setToken(data.token);
+        console.log(token);
 
-      await identityApi.register(firstName, lastName, email, userName, password)
-          .then(response => {
-              const data = response.data;
-                  console.log(data)
-
-                  setError(false);
-                  setErrors([]);
-
-                  setToken(data.token);
-                  console.log(token);
-
-                  //TODO: Redirect to home page with the user signed
-                  navigate("/");
-                  return;
-          })
-          .catch(error => {
-              setErrors(error.response.data.Errors);
-              setError(true);
-          });
-
-    //   console.log(response.data);
-    // if (response.status === 200) {
-    //     const data = response.data;
-    //     console.log(data)
-    //
-    //     setError(false);
-    //     setErrors([]);
-    //
-    //     setToken(data.token);
-    //     console.log(token);
-    //
-    //     //TODO: Redirect to home page with the user signed
-    //     navigate("/");
-    //     return;
-    // }
-    //
-    // //Error handling
-    // const data = response.data;
-    // console.log(data);
-    // setErrors(data.Errors)
-    // setError(true);
+        //TODO: Redirect to home page with the user signed
+        navigate("/");
+      })
+      .catch(error => {
+        setErrors(error.response.data.Errors);
+        setError(true);
+      });
   };
 
   const handleInputChange = (e) => {
     const { id, value } = e.target;
-    
+
     switch (id) {
-        case "firstName":
-            setFirstName(value);
-            break;
-        case "lastName":
-            setLastName(value);
-            break;
-        case "email":
-            setEmail(value);
-            break;
-        case "userName":
-            setUserName(value);
-            break;
-        case "password":
-            setPassword(value);
-            break;
-        case "confirmPassword":
-            setConfirmPassword(value);
-            break;
-        default:
-            break;
+      case "firstName":
+        setFirstName(value);
+        break;
+      case "lastName":
+        setLastName(value);
+        break;
+      case "email":
+        setEmail(value);
+        break;
+      case "userName":
+        setUserName(value);
+        break;
+      case "password":
+        setPassword(value);
+        break;
+      case "confirmPassword":
+        setConfirmPassword(value);
+        break;
+      default:
+        break;
     }
   };
 
@@ -139,9 +86,8 @@ function SignUp() {
     await register();
   };
 
-    const navigate = useNavigate();
-
-
+  const navigate = useNavigate();
+  
   const renderForm = (
     <div className="form">
       <img src={logo} className="logo" id="logo" alt="Built it logo" />
@@ -216,9 +162,9 @@ function SignUp() {
         </div>
       </form>
       {error && (
-          <p style={{ color: "red", marginTop: 5 }}>
-            {errors.map((error) => error)}
-          </p>
+        <p style={{ color: "red", marginTop: 5 }}>
+          {errors.map((error) => error)}
+        </p>
       )}
     </div>
   );

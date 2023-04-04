@@ -33,6 +33,7 @@ const JobSideNav = ({projectId, jobName}) => {
   }
   
   useEffect(() => {
+    //TODO: Fix bugs with the alert when running 2+ builds
     const handleCloseSuccessAlert = () => {
       if(showSuccessAlert) {
         //TODO: Find a better way to do this timeout...
@@ -62,7 +63,7 @@ const JobSideNav = ({projectId, jobName}) => {
   }
 
   return (
-      <aside className="fixed left-0 w-64 h-screen transition-transform -translate-x-full sm:translate-x-0">
+      <aside className="absolute left-0 w-64 h-screen transition-transform -translate-x-full sm:translate-x-0">
         <div className="h-full px-3 py-4 overflow-y-auto bg-gray-50 dark:bg-gray-800">
           <ul className="space-y-2 list-none">
             <li className="none">

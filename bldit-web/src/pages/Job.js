@@ -10,7 +10,7 @@ const Job = () => {
   const { projectId, jobName } = useParams();
   
   const footerStyleOverride = {
-    position: "absolute",
+    position: "relative",
     bottom: "0",
     width: "100%",
   };

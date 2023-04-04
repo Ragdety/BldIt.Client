@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import "./ContactForm.js";
 import "../styles/Footer.css";
 
-function Footer() {
+function Footer({styles}) {
 
   const [openLinks, setOpenLinks] = useState(false);
 
@@ -20,7 +20,7 @@ function Footer() {
   };
 
   return (
-    <div className="footer">
+    <div className="footer" style={styles}>
       <div className="leftSide" id={openLinks ? "open" : "close"}>
         <img alt="logo" src={Logo} />
         <p> &copy; 2023 Auto Mates</p>

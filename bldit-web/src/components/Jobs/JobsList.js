@@ -99,7 +99,7 @@ const JobsList = ({ projectId }) => {
                     className="px-6 py-4 font-light text-gray-900 whitespace-nowrap dark:text-white"
                   >
                     <Link className="cursor-pointer no-underline" to="/EditJob">
-                      Edit
+                      Configure
                     </Link>
                   </th>
                   <th

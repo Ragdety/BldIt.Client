@@ -8,6 +8,12 @@ import {useParams} from "react-router-dom";
 
 const Job = () => {
   const { projectId, jobName } = useParams();
+  
+  const footerStyleOverride = {
+    position: "absolute",
+    bottom: "0",
+    width: "100%",
+  };
 
   return (
     <>
@@ -21,7 +27,7 @@ const Job = () => {
           <BuildList projectId={projectId} jobName={jobName}/>
         </div>
       </div>
-      <Footer/>
+      <Footer styles={footerStyleOverride}/>
     </>
   );
 };

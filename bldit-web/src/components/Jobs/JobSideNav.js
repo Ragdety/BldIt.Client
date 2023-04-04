@@ -19,29 +19,18 @@ const JobSideNav = ({projectId, jobName}) => {
       .replace("{projectId}", projId)
       .replace("{jobName}", name));
   }
-  const buildJobApi = useApi(buildJob);
   
   const startBuild = async (e, projectId, jobName) => {
-    await buildJobApi.request(projectId, jobName);
-    
-    console.log(buildJobApi);
-    
-    if (buildJobApi.success === true) {
-      setShowSuccessAlert(true);
-      return;
-    }
-
-    if(buildJobApi.status === 404 ||
-       buildJobApi.status === 400 ||
-       buildJobApi.status === 500 ) 
-    {
-      setShowFailedAlert(true);
-    }
+    buildJob(projectId, jobName)
+      .then((response) => {
+        console.log(response);
+        setShowSuccessAlert(true);
+      })
+      .catch((error) => {
+        console.log(error);
+        setShowFailedAlert(true);
+      });
   }
-  
-  // useEffect(() => {
-  //  
-  // }, [buildJobApi.loa]
   
   useEffect(() => {
     const handleCloseSuccessAlert = () => {

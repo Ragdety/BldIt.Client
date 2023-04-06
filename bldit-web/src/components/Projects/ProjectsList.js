@@ -45,7 +45,7 @@ const ProjectsList = () => {
   return (
     <>
       {projectDetails.length ? (
-        <table className="w-full p-0 text-sm text-left text-gray-500 border-1 shadow-md sm:rounded-lg">
+        <table className="w-full p-0 text-sm text-center text-gray-500 border-1 shadow-md sm:rounded-lg">
           <thead className="text-xs text-gray-700 uppercase bg-gray-50">
           <tr>
             <th scope="col" className="px-6 py-3">
@@ -78,7 +78,7 @@ const ProjectsList = () => {
               </th>
               <th
                 scope="row"
-                className="px-6 py-4 font-light text-gray-900 whitespace-nowrap dark:text-white"
+                className="px-6 py-4 font-light text-gray-900 whitespace-normal overflow-hidden dark:text-white"
               >
                 <th className="cursor-pointer no-underline">
                   {project.description}

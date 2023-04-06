@@ -21,11 +21,15 @@ const Projects = () => {
       <Navbar />
       <div className="content">
         <div className="home" style={{ backgroundImage: `url(${BannerImage})` }}>
+            <div style={{position:"absolute", top: "40%", left: "50%", transform: "translate(-50%, -50%)", width:"85%"}}>
           <h2 className="projectsTitle"> Projects Dashboard</h2>
           <div className = "oneTimeButton">
             <button className="new" onClick={navigateToCreateProject}> Create Project  </button>
           </div>
+            <div style={{maxHeight:"350px", overflowY:"auto", overflowX:"hidden"}}>
           <ProjectsList />
+            </div>
+            </div>
         </div>
       </div>
       <Footer/>

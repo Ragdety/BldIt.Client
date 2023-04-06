@@ -1,10 +1,10 @@
 import React, {useEffect, useState} from 'react';
 import { Typography } from "@material-tailwind/react";
-import {Link} from "react-router-dom";
 import useBldItPrivate from "../../hooks/useAxiosPrivate";
 import routes from "../../api/bldit/routes";
 import useApi from "../../hooks/useApi";
-import moment from "moment";
+import BuildCard from "./BuildCard";
+import {useNavigate} from "react-router-dom";
 
 const BuildList = ({projectId, jobName}) => {
   const [builds, setBuilds] = useState([]);
@@ -40,6 +40,20 @@ const BuildList = ({projectId, jobName}) => {
 
     handleGetBuilds();
   }, [getBuildsApi.data]);
+  
+  const buildCardStyle = {
+    backgroundColor: "white",
+    borderRadius: "10px",
+    boxShadow: "0 0 10px 0 rgba(0, 0, 0, 0.1)",
+    padding: "20px",
+    marginBottom: "20px",
+    cursor: "pointer",
+  }
+
+  const navigate = useNavigate();
+  const navigateToLogs = (buildNumber, buildId) => {
+    navigate(`/projects/${projectId}/jobs/${jobName}/builds/${buildNumber}/logs/${buildId}`);
+  }
 
   return (
     <>
@@ -48,36 +62,17 @@ const BuildList = ({projectId, jobName}) => {
           <thead className="text-xs text-gray-700 uppercase bg-gray-50">
           <tr>
             <th scope="col" className="px-6 py-3">
-              Build Number
+              Builds
             </th>
-            <th scope="col" className="px-6 py-3">
-              Result
-            </th>
-            <th scope="col" className="px-6 py-3">
-              Date Started
-            </th>
-            <th scope="col" className="px-6 py-3"></th>
           </tr>
           </thead>
           <tbody className="h-50 overflow-y-scroll w-full">
           {builds.map((build) => (
-            <tr id={build.id}
-                className="bg-white border-b hover:bg-gray-50 dark:hover:bg-gray-600">
-              <th scope="row" className="px-6 py-4 font-light text-gray-900 whitespace-nowrap dark:text-white">
-                {build.number}
-              </th>
-              <th scope="row" className="px-6 py-4 font-light text-gray-900 whitespace-nowrap dark:text-white">
-                {build.result}
-              </th>
-              <th scope="row" className="px-6 py-4 font-light text-gray-900 whitespace-nowrap dark:text-white">
-                {moment(build.createdAt).format('DD MMM, YYYY')}
-              </th>
-              <th scope="row" className="px-6 py-4 font-light text-gray-900 whitespace-nowrap dark:text-white">
-                <Link className="cursor-pointer no-underline" to={`/logs/${build.id}`}>
-                  Logs
-                </Link>
-              </th>
-            </tr>
+            <BuildCard build={build} 
+                       key={build.id} 
+                       style={buildCardStyle}
+                       onClick={() => navigateToLogs(build.number, build.id)}
+            />
           ))}
           </tbody>
         </table>

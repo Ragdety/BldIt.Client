@@ -39,7 +39,7 @@ function AppRoutes() {
             <Route path="/projects/:projectId/jobs" element={<Jobs />} />
             <Route path="/createproject" element={<CreateProject />} />
             <Route path="/projects/:projectId/jobs/:jobName" element={<Job />} />
-            <Route path="/logs/:buildId" element={<BuildLogs />} />
+            <Route path="/projects/:projectId/jobs/:jobName/builds/:buildNumber/logs/:buildId" element={<BuildLogs />} />
           </Route>
         </Route>
       </Route>

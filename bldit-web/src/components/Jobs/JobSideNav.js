@@ -63,7 +63,7 @@ const JobSideNav = ({projectId, jobName}) => {
   }
 
   return (
-      <aside className="absolute left-0 w-64 h-screen transition-transform -translate-x-full sm:translate-x-0">
+      <aside className="absolute left-0 w-64 h-screen transition-transform -translate-x-full sm:translate-x-0 h-full">
         <div className="h-full px-3 py-4 overflow-y-auto bg-gray-50 dark:bg-gray-800">
           <ul className="space-y-2 list-none">
             <li className="none">

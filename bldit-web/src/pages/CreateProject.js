@@ -1,10 +1,15 @@
 import React from "react";
-import { useState, useEffect } from "react";
-import "../styles/Login.css";
+import {useState, useEffect} from "react";
+// import "../styles/Login.css";
+import "../styles/Home.css";
 import logo from "../assets/logo.png";
-import { useNavigate } from "react-router-dom";
+import {useNavigate} from "react-router-dom";
 import Error from "../components/Error";
 import useAxiosPrivate from "../hooks/useAxiosPrivate";
+import Navbar from "../components/Navbar";
+import BannerImage from "../assets/pic.png";
+import ProjectsList from "../components/Projects/ProjectsList";
+import Footer from "../components/Footer";
 
 function CreateProject() {
     const axiosPrivate = useAxiosPrivate();
@@ -15,7 +20,7 @@ function CreateProject() {
     const [error, setError] = useState(false);
 
     const handleInputChange = (e) => {
-        const { id, value } = e.target;
+        const {id, value} = e.target;
 
         switch (id) {
             case "projectName":
@@ -34,7 +39,7 @@ function CreateProject() {
             projectName,
             description,
         };
-        
+
         await axiosPrivate.post('/projects', {
             projectName: projectName,
             description: description
@@ -64,7 +69,7 @@ function CreateProject() {
 
     const renderForm = (
         <div className="form">
-            <img src={logo} className="logo" id="logo" alt="Built it logo" />
+            {/*<img src={logo} className="logo" id="logo" alt="Built it logo"/>*/}
             <form onSubmit={handleSubmit}>
                 <div className="input-container">
                     <input
@@ -87,10 +92,10 @@ function CreateProject() {
                         placeholder="Description"
                     />
                 </div>
-
-                <div className="input-container">
-                    <input type="submit" value="Create Project" />
-                </div>
+                <button className="edit" type={"submit"}>Create Project</button>
+                {/*<div className="edit">*/}
+                {/*    <input type="submit" value="Create Project"/>*/}
+                {/*</div>*/}
             </form>
             {/*We render the errors here (if any)*/}
             {error && <Error msg={error}/>}
@@ -98,11 +103,25 @@ function CreateProject() {
     );
 
     return (
-        <div className="content">
-            <div className="login-form">
-                {renderForm}
+        <>
+            <Navbar/>
+            <div className="content">
+                <div className="home" style={{backgroundImage: `url(${BannerImage})`}}>
+                    <div style={{backgroundColor:"white", padding:"2rem",
+                        borderRadius:"0.5rem",
+                        width:"50%", position:"absolute", top: "40%", left: "50%", transform: "translate(-50%, -50%)"}}>
+                        {renderForm}
+                    </div>
+                </div>
             </div>
-        </div>
+            <Footer/>
+        </>
+
+        // <div className="content">
+        //     <div className="login-form">
+        //         {renderForm}
+        //     </div>
+        // </div>
     );
 }
 

@@ -51,9 +51,8 @@ const BuildList = ({projectId, jobName}) => {
   }
 
   const navigate = useNavigate();
-
-  const navigateToLogs = (buildId) => {
-    navigate(`/logs/${buildId}`);
+  const navigateToLogs = (buildNumber, buildId) => {
+    navigate(`/projects/${projectId}/jobs/${jobName}/builds/${buildNumber}/logs/${buildId}`);
   }
 
   return (
@@ -65,13 +64,6 @@ const BuildList = ({projectId, jobName}) => {
             <th scope="col" className="px-6 py-3">
               Builds
             </th>
-            {/*<th scope="col" className="px-6 py-3">*/}
-            {/*  Result*/}
-            {/*</th>*/}
-            {/*<th scope="col" className="px-6 py-3">*/}
-            {/*  Date Started*/}
-            {/*</th>*/}
-            {/*<th scope="col" className="px-6 py-3"></th>*/}
           </tr>
           </thead>
           <tbody className="h-50 overflow-y-scroll w-full">
@@ -79,7 +71,7 @@ const BuildList = ({projectId, jobName}) => {
             <BuildCard build={build} 
                        key={build.id} 
                        style={buildCardStyle}
-                       onClick={() => navigateToLogs(build.id)}
+                       onClick={() => navigateToLogs(build.number, build.id)}
             />
           ))}
           </tbody>

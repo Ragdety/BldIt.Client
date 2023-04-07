@@ -1,15 +1,14 @@
 import React from 'react';
 import { useState, useEffect, useRef } from 'react';
 import * as signalR from "@microsoft/signalr";
-import axios from "axios";
 import Navbar from "../components/Navbar";
 import BannerImage from "../assets/pic.png";
-import Footer from "../components/Footer";
 import {useParams} from "react-router-dom";
+import BuildCardApi from "../components/Builds/BuildCardApi";
 
 const BuildLogs = () => {
   const buildStreamURL = 'http://localhost:5005/buildStream';
-  const { buildId } = useParams();
+  const { projectId, jobName, buildNumber, buildId } = useParams();
 
   const [currentRoom, setCurrentRoom] = useState("");
   const [runningBuild, setRunningBuild] = useState({});
@@ -88,6 +87,7 @@ const BuildLogs = () => {
         <Navbar />
         <div className="home" style={{ backgroundImage: `url(${BannerImage})` }}>
           <div className="flex items-center justify-center h-screen">
+            <BuildCardApi projectId={projectId} jobName={jobName} buildNumber={buildNumber} />
             <div
               className="max-w-sm max-h-72 w-full p-6 text-center bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
               <p>
@@ -95,7 +95,7 @@ const BuildLogs = () => {
                   Realtime Logs
                 </h5>
               </p>
-              <p className="mb-3 font-normal text-gray-700 dark:text-gray-400 max-h-screen overflow-y-auto max-h-72" >
+              <p className="mb-3 font-normal text-gray-700 dark:text-gray-400 overflow-y-auto max-h-72" >
                 Logs from build: {buildId}
                 {logs.map((log, index) => (
                     <p key={index}

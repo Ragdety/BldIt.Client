@@ -34,7 +34,7 @@ function AppRoutes() {
         <Route path="/404" element={<NotFound />} />
         <Route path="/logout" element={<Logout />} />
         <Route path="/forgotpassword" element={<ForgotPassword />} />
-        <Route path="/jobs/jobConfig" element={<Form />} />
+        <Route path="/jobs/jobConfig" element={<JobConfig />} />
 
         {/*protected routes*/}
         <Route element={<PersistLogin/>}>

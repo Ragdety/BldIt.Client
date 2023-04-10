@@ -50,22 +50,6 @@ const Form = () => {
         {/*<JobConfig/>*/}
         <div className="form-step">
           <JobConfigStepper />
-          {/*<div className="stepHeader">*/}
-          {/*  <h2> {titles[step]}</h2>*/}
-          {/*</div>*/}
-          {/*<div className="body">*/}
-          {/*  {stepDisplay()}*/}
-          {/*</div>*/}
-
-          {/*<div className="nav_button">*/}
-          {/*  <button type="submit" id="nav_back" value="Submit"> Back</button>*/}
-          {/*  /!* <button type="submit" id="nav_next" value="Submit" onClick={() => {setStep((currentStep)=> currentStep + 1); }}> Next </button> *!/*/}
-          {/*  <button id="nav_next" onClick={() => {*/}
-          {/*    setStep((currentStep) => currentStep + 1);*/}
-          {/*  }}> Next*/}
-          {/*  </button>*/}
-          {/*  <button type="submit" id="submit" value="Submit">Submit</button>*/}
-          {/*</div>*/}
         </div>
       </div>
       <Footer/>

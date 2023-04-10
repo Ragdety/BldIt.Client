@@ -9,34 +9,155 @@ import General from "../../pages/General";
 import SCMConfig from "../../pages/SCMConfig";
 import ConfigBuild from "../../pages/ConfigBuild";
 import PostBuild from "../../pages/PostBuild";
-import { styled } from '@mui/material/styles';
+import useAxiosPrivate from "../../hooks/useAxiosPrivate";
+import routes from "../../api/bldit/routes";
 
 const steps = ["General", 'SCM', 'Build', 'Post Build'];
-const stepDescriptions = [<General/>, <SCMConfig/>, <ConfigBuild/>, <PostBuild/>];
 
 const JobConfigStepper = ({projectId}) => {
+  const axiosPrivate = useAxiosPrivate();
+
+  //Stepper Step Functions
   const [activeStep, setActiveStep] = useState(0);
+  const [hasErrors, setHasErrors] = useState(false);
+  const [currentErrorMessage, setCurrentErrorMessage] = useState("");
   const [completed, setCompleted] = useState({});
 
   const totalSteps = steps.length;
   const completedSteps = Object.keys(completed).length;
   const allStepsCompleted = completedSteps === totalSteps;
 
-  const handleNext = () => {
+  const handleNext = async () => {
+    const errors = await stepApiCall();
+    
+    if (errors.length > 0) { 
+      setHasErrors(true);
+      setCurrentErrorMessage(errors[0]);
+      console.log("Errors: ", errors);
+      return;
+    }
+    
     const newCompleted = completed;
     newCompleted[activeStep] = true;
     setCompleted(newCompleted);
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
+    setHasErrors(false);
+    setCurrentErrorMessage("");
   };
+  
+  const handleStepDataChange = (attr, newData) => {
+    if (activeStep === 0) {
+      //Sets the [attr] value to newData. 
+      //For example, if attr = "jobName" and newData = "My Job Name", then jobToCreate.jobName = "My Job Name"
+      setJobToCreate((prevJobToCreate) => ({
+        ...prevJobToCreate,
+        [attr]: newData,
+      }));
+    } else if (activeStep === 1) {
+      setSCMConfig((prevSCMConfig) => ({
+        ...prevSCMConfig,
+        [attr]: newData,
+      }));
+    } else if (activeStep === 2) {
+      setBuildConfig((prevBuildConfig) => ({
+        ...prevBuildConfig,
+        [attr]: newData,
+      }));
+    } else if (activeStep === 3) {
+      setPostBuildConfig((prevPostBuildConfig) => ({
+        ...prevPostBuildConfig,
+        [attr]: newData,
+      }));
+    }
+  }
 
-  const handleBack = () => {
-    setActiveStep((prevActiveStep) => prevActiveStep - 1);
+  const stepDisplay = () => {
+    if (activeStep === 0) {
+      return <General 
+        hasError={hasErrors} 
+        currentErrorMessage={currentErrorMessage}
+        jobToCreate={jobToCreate}
+        onStepDataChange={handleStepDataChange}
+      />;
+    }   else if (activeStep === 1) {
+      return <SCMConfig hasError={hasErrors} currentErrorMessage={currentErrorMessage}/>;
+    }  else if (activeStep === 2) {
+      return <ConfigBuild hasError={hasErrors} currentErrorMessage={currentErrorMessage}/>;
+    }   else if (activeStep === 3)  {
+      return <PostBuild hasError={hasErrors} currentErrorMessage={currentErrorMessage}/>
+    }
+  }
+  
+  const stepApiCall = () => {
+    if (activeStep === 0) {
+      return createJob();
+    }   else if (activeStep === 1) {
+      return createSCMConfig();
+    }  else if (activeStep === 2) {
+      return createBuildConfig();
+    }   else if (activeStep === 3)  {
+      return createPostBuildConfig();
+    }
+  }
+  //End - Stepper Step Functions
+  
+  //Job Config information
+  const [jobToCreate, setJobToCreate] = useState({
+    jobName: "",
+    jobDescription: "",
+    jobType: "Freestyle",
+  });
+  
+  const createJob = async () => {
+    const errors = [];
+    console.log("Job to create: ", jobToCreate);
+    // const response = await axiosPrivate.post(routes.jobs.createJob
+    //   .replace("{projectId}", projectId), jobToCreate);
+    //
+    // if(response.status === 200) {
+    //   console.log("Job created successfully");
+    // }
+    // else {
+    //   console.log("Job creation failed");
+    //   errors.push(response.data.detail);
+    // }
+    
+    return errors;
+  }
+  
+  const [scmConfig, setSCMConfig] = useState({
+    repoId: "",
+    repoName: "",
+    repoUrl: "",
+    repoBranch: "",
+    gitHubCredentialId: "",
+  });
+  
+  const createSCMConfig = async () => {
+    console.log("SCM Config to create: ", scmConfig);
+  }
+  
+  const buildStep = {
+    command: "",
+    stepType: "",
   };
-
-  const handleReset = () => {
-    setActiveStep(0);
-    setCompleted({});
-  };
+  
+  const [buildConfig, setBuildConfig] = useState({
+    buildSteps: [],
+  });
+  
+  const createBuildConfig = async () => {
+    console.log("Build Config to create: ", buildConfig);
+  }
+  
+  const [postBuildConfig, setPostBuildConfig] = useState({
+    emailNotification: false,
+  });
+  
+  const createPostBuildConfig = async () => {
+    console.log("Post Build Config to create: ", postBuildConfig);
+  }
+  //End - Job Config information
 
   return (
     <Box sx={{ width: '100%', maxWidth: '800px' }}>
@@ -82,7 +203,7 @@ const JobConfigStepper = ({projectId}) => {
           </Typography>
           <Box sx={{ display: 'flex', flexDirection: 'row', pt: 2 }}>
             <Box sx={{ flex: '1 1 auto' }} />
-            <Button variant="contained" onClick={handleReset}>
+            <Button variant="contained" onClick={() => {return}}>
               Create Another Job
             </Button>
           </Box>
@@ -94,12 +215,9 @@ const JobConfigStepper = ({projectId}) => {
           </Typography>
 
           <Box sx={{ mt: 2 }}>
-            {stepDescriptions[activeStep]}
+            {stepDisplay()}
           </Box>
           <Box sx={{ display: 'flex', flexDirection: 'row', pt: 2 }}>
-            <Button onClick={handleBack} disabled={activeStep === 0} variant="contained">
-              Back
-            </Button>
             <Box sx={{ flex: '1 1 auto' }} />
             <Button
               variant="contained"

@@ -1,13 +1,41 @@
-import React from 'react';
-import {Breadcrumbs} from "@material-tailwind/react";
-import {Link} from "react-router-dom";
+import React from "react";
+import BannerImage from "../assets/pic.png";
+import "../styles/Home.css";
+import { useState } from "react";
+import "../styles/jobconfig.css";
+import General from "./General";
+import SCMConfig from "./SCMConfig";
+import ConfigBuild from "./ConfigBuild";
+import PostBuild from "./PostBuild";
+import {useNavigate} from "react-router-dom";
+import Navbar from "../components/Navbar";
+import Footer from "../components/Footer";
+import JobConfigStepper from "../components/Jobs/JobConfigStepper";
+
 
 const JobConfig = () => {
+  const navigate = useNavigate();
+
+  const navigateToProjects = () => {
+    //  navigate to /projects
+    navigate("/projects");
+  };
+
   return (
-    <div>
-      
+    <div className="form">
+      <Navbar/>
+      <div className="home" style={{ backgroundImage: `url(${BannerImage})` }}>
+        <div className="header">
+          <h1 className="jc-title"> Job Configuration Build </h1>
+        </div>
+        {/*<JobConfig/>*/}
+        <div className="form-step">
+          <JobConfigStepper />
+        </div>
+      </div>
+      <Footer/>
     </div>
   );
-};
+}
 
 export default JobConfig;

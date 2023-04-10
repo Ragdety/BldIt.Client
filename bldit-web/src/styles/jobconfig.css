@@ -1,15 +1,15 @@
-    .form {
-        min-height: 100%;
-        min-width: 2px;
-        width: 100%;
-        height: auto;
-        position: fixed;
-        top: 0;
-        left: 0;
-        background-size: cover;
-    }
+    /*.form {*/
+    /*    min-height: 100%;*/
+    /*    min-width: 2px;*/
+    /*    width: 100%;*/
+    /*    height: auto;*/
+    /*    position: fixed;*/
+    /*    top: 0;*/
+    /*    left: 0;*/
+    /*    background-size: cover;*/
+    /*}*/
     
-    h1 {
+    .jc-title {
         color: white;
         text-align: center;
         width: 30%;
@@ -21,18 +21,18 @@
         margin-top: 100px;
     }
     
-    h3 {
-        color: white;
-        text-align: center;
-        width: 50%;
-        display: block;
-        margin: 0 auto;
-        padding-top: 50px;
-        font-family: Verdana, Geneva, Tahoma, sans-serif;
-        text-decoration: underline;
-        font-size: 15px;
-        padding-bottom: 20px;
-    }
+    /*h3 {*/
+    /*    color: white;*/
+    /*    text-align: center;*/
+    /*    width: 50%;*/
+    /*    display: block;*/
+    /*    margin: 0 auto;*/
+    /*    padding-top: 50px;*/
+    /*    font-family: Verdana, Geneva, Tahoma, sans-serif;*/
+    /*    text-decoration: underline;*/
+    /*    font-size: 15px;*/
+    /*    padding-bottom: 20px;*/
+    /*}*/
     
     .form-step {
         /* background-color: rgba(27, 34, 129, 0.299); */
@@ -54,7 +54,7 @@
         font-size: 20px;
     }
     
-    label {
+    .jc-label {
         /* background-color: rgb(56, 131, 150); */
         color: white;
         height: 50%;
@@ -126,9 +126,6 @@
         font-size: 15px;
         color: rgb(231, 233, 234);
         margin-left: 10px;
-        /*     margin: 10px;
-    padding: 8px;
-    padding-left: 10px; */
         text-align: center;
     }
     
@@ -145,7 +142,7 @@
         margin-left: 10px;
         /*     margin: 10px;
     padding: 8px;
-    padding-left: 10px; */
+    padding-left: 10px; 
         text-align: center;
         margin-right: 50%;
     }

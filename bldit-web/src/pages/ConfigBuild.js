@@ -1,6 +1,6 @@
 import React from "react";
 import { useState } from "react";
-import "../styles/config.css";
+import "../styles/jobconfig.css";
 
 function ConfigBuild() {
 
@@ -28,12 +28,12 @@ function ConfigBuild() {
 
     <div className="p3_opt1">
         <input type="radio" id="pr_creation" name="selected" value="pr_creation"/>
-        <label for="pr_creation">PR Creation</label>
+        <label for="pr_creation" className="jc-label">PR Creation</label>
     </div>
 
     <div className="p3_opt2">
         <input type="radio" id="push" name="selected" value="push"/>
-        <label for="push">Push</label>
+        <label for="push" className="jc-label">Push</label>
     </div>
     </div>
 

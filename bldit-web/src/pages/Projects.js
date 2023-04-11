@@ -26,7 +26,7 @@ const Projects = () => {
           <div className = "oneTimeButton">
             <button className="new" onClick={navigateToCreateProject}> Create Project  </button>
           </div>
-            <div style={{maxHeight:"350px", overflowY:"auto", overflowX:"hidden"}}>
+            <div style={{maxHeight:"350px", overflowY:"auto", overflowX:"hidden", borderRadius: "9px"}}>
           <ProjectsList />
             </div>
             </div>

@@ -93,7 +93,7 @@ function SignUp() {
       <img src={logo} className="logo" id="logo" alt="Built it logo" />
       <form onSubmit={handleSubmit}>
         <div className="input-container">
-          <input
+          <input required
             className="form__input"
             type="text"
             value={firstName}
@@ -103,19 +103,19 @@ function SignUp() {
           />
         </div>
         <div className="input-container">
-          <input
+          <input required
             type="text"
             name=""
             id="lastName"
             value={lastName}
             className="form__input"
             onChange={(e) => handleInputChange(e)}
-            placeholder="LastName"
+            placeholder="Last Name"
           />
         </div>
 
         <div className="input-container">
-          <input
+          <input required
             type="text"
             name=""
             id="userName"
@@ -127,7 +127,7 @@ function SignUp() {
         </div>
 
         <div className="input-container">
-          <input
+          <input required
             type="email"
             id="email"
             className="form__input"
@@ -137,7 +137,7 @@ function SignUp() {
           />
         </div>
         <div className="input-container">
-          <input
+          <input required
             className="form__input"
             type="password"
             id="password"
@@ -147,7 +147,7 @@ function SignUp() {
           />
         </div>
         <div className="input-container">
-          <input
+          <input required
             className="form__input"
             type="password"
             id="confirmPassword"
@@ -162,7 +162,7 @@ function SignUp() {
         </div>
       </form>
       {error && (
-        <p style={{ color: "red", marginTop: 5 }}>
+        <p style={{ color: "red", marginTop: 5, textAlign:"center" }}>
           {errors.map((error) => error)}
         </p>
       )}

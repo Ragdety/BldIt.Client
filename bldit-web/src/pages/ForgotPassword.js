@@ -80,7 +80,12 @@ function ForgotPassword() {
           </div>
 
           {/*We render the errors here (if any)*/}
-          {error && <Error msg={error}/>}
+          {/*{error && <Error msg={error}/>}*/}
+          {error && (
+              <p style={{ color: "red", marginTop: 5, textAlign:"center", maxWidth:"320px" }}>
+                  {<Error msg={error}/>}
+              </p>
+          )}
       </div>
     );
 

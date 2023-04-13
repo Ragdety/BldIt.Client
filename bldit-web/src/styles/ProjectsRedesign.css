@@ -1,0 +1,70 @@
+
+.mainContent{
+    height: 100%;
+    width: 100%;
+    background-color: #102441;
+    /*background-image: url("../assets/pic.png");*/
+}
+.pageTitle{
+    color: white;
+    font-family: Consolas;
+    float: right;
+    /*position: fixed;*/
+    /*padding-left: 13%;*/
+}
+
+.pageTitle h1{
+    padding-left:6%;
+}
+
+.pageTitle button{
+    background-color: black;
+    color: white;
+    border: none;
+    /*padding:3% 5% 3% 5%;*/
+    font-family: Consolas;
+    text-transform: uppercase;
+    border-radius: 1rem;
+    letter-spacing: 2px;
+    transition: background-color 0.3s ease;
+    text-align: center;
+}
+.pageTitle button:hover{
+    color: black;
+    background-color: white;
+}
+
+.ProjectTableDiv{
+    width: 90%;
+    text-align: center;
+    float: right;
+}
+
+.ProjectTable{
+    width:90%;
+    margin:auto;
+    max-height:600px;
+    overflow-y:auto;
+    overflow-x:hidden;
+}
+
+/*Create Project Page*/
+.ProjectForm{
+    width:90%;
+    margin:auto;
+    max-height:600px;
+    padding-top:10%;
+}
+
+.CreateProjectDiv{
+    width: 90%;
+    text-align: center;
+    float: right;
+}
+
+.CreateProjectForm{
+    background-color: white;
+    border-radius: 0.5rem;
+    padding: 4%;
+    box-shadow: 0px 0px 15px #438c97;
+}

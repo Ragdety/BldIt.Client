@@ -47,7 +47,7 @@ const JobsList = ({ projectId }) => {
                 {/*<th scope="col" className="px-6 py-3">*/}
                 {/*  Status*/}
                 {/*</th>*/}
-                <th scope="col" className="px-6 py-3">
+                <th scope="col" className="px-6 py-3 sm:rounded-lg">
                   Jobs Name
                 </th>
                 <th scope="col" className="px-6 py-3">
@@ -57,7 +57,7 @@ const JobsList = ({ projectId }) => {
                   Creation Date
                 </th>
                 <th scope="col" className="px-6 py-3"></th>
-                <th scope="col" className="px-6 py-3"></th>
+                <th scope="col" className="px-6 py-3 sm:rounded-lg"></th>
               </tr>
               </thead>
               <tbody>
@@ -75,7 +75,7 @@ const JobsList = ({ projectId }) => {
                   {/*</th>*/}
                   <th
                     scope="row"
-                    className="px-6 py-4 font-light text-gray-900 whitespace-nowrap dark:text-white cursor-pointer"
+                    className="px-6 py-4 font-light text-gray-900 whitespace-nowrap dark:text-white cursor-pointer sm:rounded-lg"
                     onClick={() => navigateToJob(job.name)}
                   >
                       {job.name}
@@ -104,7 +104,7 @@ const JobsList = ({ projectId }) => {
                   </th>
                   <th
                     scope="row"
-                    className="px-6 py-4 font-light text-gray-900 whitespace-nowrap dark:text-white"
+                    className="px-6 py-4 font-light text-gray-900 whitespace-nowrap dark:text-white sm:rounded-lg"
                   >
                     <Link className="cursor-pointer no-underline">
                       Delete

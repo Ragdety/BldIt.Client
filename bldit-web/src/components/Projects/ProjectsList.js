@@ -47,8 +47,8 @@ const ProjectsList = () => {
       {projectDetails.length ? (
         <table className="w-full p-0 text-sm text-center text-gray-500 border-1 shadow-md sm:rounded-lg">
           <thead className="text-xs text-gray-700 uppercase bg-gray-50">
-          <tr>
-            <th scope="col" className="px-6 py-3">
+          <tr className="sticky top-0 bg-gray-50">
+            <th scope="col" className="px-6 py-3 sm:rounded-lg">
               Name
             </th>
             <th scope="col" className="px-6 py-3">
@@ -57,7 +57,7 @@ const ProjectsList = () => {
             <th scope="col" className="px-6 py-3">
               Creation Date
             </th>
-            <th scope="col" className="px-6 py-3">
+            <th scope="col" className="px-6 py-3 sm:rounded-lg">
               Modifications
             </th>
           </tr>
@@ -71,14 +71,14 @@ const ProjectsList = () => {
             >
               <th
                 scope="row"
-                className="px-6 py-4 font-light text-gray-900 whitespace-nowrap dark:text-white cursor-pointer"
+                className="px-6 py-4 font-light text-gray-900 whitespace-nowrap dark:text-white cursor-pointer sm:rounded-lg"
                 onClick={() => navigateToJobs(project.id)}
               >
                 {project.projectName}
               </th>
               <th
                 scope="row"
-                className="px-6 py-4 font-light text-gray-900 whitespace-normal overflow-hidden dark:text-white"
+                className="px-6 py-4 font-light text-gray-900 whitespace-normal overflow-hidden dark:text-white text-left"
               >
                 <th className="cursor-pointer no-underline">
                   {project.description}
@@ -94,10 +94,10 @@ const ProjectsList = () => {
               </th>
               <th
                 scope="row"
-                className="px-6 py-4 font-light text-gray-900 whitespace-nowrap dark:text-white"
+                className="px-6 py-4 font-light text-gray-900 whitespace-nowrap dark:text-white sm:rounded-lg"
               >
-                <button className="edit" onClick={openEditForm}>Edit</button>
-                <button className="delete" onClick={(e)=> deleteProject(e, project.id)}>Delete</button>
+                <button className="buttonsDesign" onClick={openEditForm}>Edit</button>
+                <button className="buttonsDesign" onClick={(e)=> deleteProject(e, project.id)}>Delete</button>
               </th>
             </tr>
           ))}
@@ -105,7 +105,7 @@ const ProjectsList = () => {
         </table>
       ) : (
         <div>
-          <Typography>No projects yet</Typography>
+          <Typography style={{color:"white"}}>No projects yet</Typography>
         </div>
       )}
     </>

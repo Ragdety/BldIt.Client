@@ -10,6 +10,9 @@ import Navbar from "../components/Navbar";
 import BannerImage from "../assets/pic.png";
 import ProjectsList from "../components/Projects/ProjectsList";
 import Footer from "../components/Footer";
+import SideBar from "../components/SideBar";
+import "../styles/ProjectsRedesign.css";
+
 
 function CreateProject() {
     const axiosPrivate = useAxiosPrivate();
@@ -68,7 +71,7 @@ function CreateProject() {
     const navigate = useNavigate();
 
     const renderForm = (
-        <div className="form">
+        <div className="CreateProjectForm">
             {/*<img src={logo} className="logo" id="logo" alt="Built it logo"/>*/}
             <form onSubmit={handleSubmit}>
                 <div className="input-container">
@@ -79,6 +82,7 @@ function CreateProject() {
                         onChange={(e) => handleInputChange(e)}
                         id="projectName"
                         placeholder="Project Name"
+                        maxLength="120"
                     />
                 </div>
                 <div className="input-container">
@@ -90,9 +94,10 @@ function CreateProject() {
                         className="form__input"
                         onChange={(e) => handleInputChange(e)}
                         placeholder="Description"
+                        maxLength="120"
                     />
                 </div>
-                <button className="edit" type={"submit"}>Create Project</button>
+                <button className="buttonsDesign" type={"submit"}>Create Project</button>
                 {/*<div className="edit">*/}
                 {/*    <input type="submit" value="Create Project"/>*/}
                 {/*</div>*/}
@@ -102,19 +107,48 @@ function CreateProject() {
         </div>
     );
 
+    // Setting up the background image and height and width
+    useEffect(() => {
+        document.body.classList.add("mainContent");
+
+        // Cleanup function to remove the class when the component unmounts
+        return () => {
+            document.body.classList.remove("mainContent");
+        };
+    }, []);
+
     return (
         <>
-            <Navbar/>
-            <div className="content">
-                <div className="home" style={{backgroundImage: `url(${BannerImage})`}}>
-                    <div style={{backgroundColor:"white", padding:"2rem",
-                        borderRadius:"0.5rem",
-                        width:"50%", position:"absolute", top: "40%", left: "50%", transform: "translate(-50%, -50%)"}}>
+            <div className="mainContent">
+                {/*SideBar*/}
+                <div style={{width: "10%", height: "100%", display: "flex"}}>
+                    <SideBar/>
+                </div>
+
+                {/*Page Title*/}
+                <div style={{width: "90%"}} className="pageTitle">
+                    <h1>Create Project</h1>
+                    {/*<button onClick={navigateToCreateProject}>Create Project</button>*/}
+                </div>
+
+                {/*Create Project Part*/}
+                <div className="CreateProjectDiv">
+                    <div className="ProjectForm">
                         {renderForm}
                     </div>
                 </div>
             </div>
-            <Footer/>
+            {/*<Navbar/>*/}
+            {/*<div className="content">*/}
+            {/*    <div className="home" style={{backgroundImage: `url(${BannerImage})`}}>*/}
+            {/*        <div style={{backgroundColor:"white", padding:"2rem",*/}
+            {/*            borderRadius:"0.5rem",*/}
+            {/*            width:"50%", position:"absolute", top: "40%", left: "50%", transform: "translate(-50%, -50%)"}}>*/}
+            {/*            {renderForm}*/}
+            {/*        </div>*/}
+            {/*    </div>*/}
+            {/*</div>*/}
+            {/*<Footer/>*/}
         </>
 
         // <div className="content">

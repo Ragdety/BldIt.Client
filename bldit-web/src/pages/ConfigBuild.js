@@ -28,19 +28,19 @@ function ConfigBuild() {
 
     <div className="p3_opt1">
         <input type="radio" id="pr_creation" name="selected" value="pr_creation"/>
-        <label for="pr_creation" className="jc-label">PR Creation</label>
+        <label className="jc-label">PR Creation</label>
     </div>
 
     <div className="p3_opt2">
         <input type="radio" id="push" name="selected" value="push"/>
-        <label for="push" className="jc-label">Push</label>
+        <label className="jc-label">Push</label>
     </div>
     </div>
 
     <div className="q6"> 
         <p> Build Section </p>
         <select name="script" id="script">
-        <option disabled selected value> Select an option </option>
+        <option disabled value=""> Select an option </option>
         <option value="batch">Windows Batch File</option>
         <option value="linux_script">Linux Script File</option>
         </select>

@@ -7,13 +7,14 @@ import General from "./General";
 import SCMConfig from "./SCMConfig";
 import ConfigBuild from "./ConfigBuild";
 import PostBuild from "./PostBuild";
-import {useNavigate} from "react-router-dom";
+import {useNavigate, useParams} from "react-router-dom";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import JobConfigStepper from "../components/Jobs/JobConfigStepper";
 
 
 const JobConfig = () => {
+  const {projectId} = useParams();
   const navigate = useNavigate();
 
   const navigateToProjects = () => {
@@ -28,9 +29,8 @@ const JobConfig = () => {
         <div className="header">
           <h1 className="jc-title"> Job Configuration Build </h1>
         </div>
-        {/*<JobConfig/>*/}
         <div className="form-step">
-          <JobConfigStepper />
+          <JobConfigStepper projectId={projectId}/>
         </div>
       </div>
       <Footer/>

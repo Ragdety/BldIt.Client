@@ -1,62 +1,137 @@
 import React from "react";
 import { useState } from "react";
 import "../styles/jobconfig.css";
+import AceEditor from 'react-ace';
+import 'ace-builds/src-noconflict/theme-dracula';
+import 'ace-builds/src-noconflict/mode-sh';
+import 'ace-builds/src-noconflict/mode-batchfile';
+import 'ace-builds/src-noconflict/mode-python';
 
-function ConfigBuild() {
+const ConfigBuild = ({buildConfigToCreate, onStepDataChange, scmType}) => {
+  const [buildSteps, setBuildSteps] = useState(buildConfigToCreate.buildSteps);
+  const [buildTrigger, setBuildTrigger] = useState(buildConfigToCreate.buildTrigger);
+  const [scriptType, setScriptType] = useState("Batch");
+  
+  const addEmptyStep = () => {
+    const emptyStep = {
+      stepType: scriptType,
+      command: "",
+    };
+    
+    const newBuildSteps = [...buildSteps, emptyStep];
+    setBuildSteps(newBuildSteps);
+    onStepDataChange('buildSteps', newBuildSteps);
+    
+    console.log(newBuildSteps);
+  }
 
-   // generates next text fields based on a button click
-    const [entry,setEntry]=useState([]);
-    const addTextField=()=>{
-        const field=[...entry,[]]
-        setEntry(field)
+  // lets you add text input to the text fields, saves it in array (?)
+  const textContent = (code, i) => {
+    const buildStepsData = [...buildSteps];
+    buildStepsData[i].command = code;
+    
+    setBuildSteps(buildStepsData);
+    onStepDataChange('buildSteps', buildStepsData);
+    
+    //console.log(buildStepsData);
+  }
+
+  const handleBuildTriggerSelect = (event) => {
+    setBuildTrigger(event.target.value);
+    onStepDataChange('buildTrigger', event.target.value);
+  }
+
+  const handleScriptTypeChange = (event) => {
+    setScriptType(event.target.value);
+  }
+  
+  const renderEditor = (stepType, i) => {
+    switch (stepType) {
+      case "Batch":
+        return <AceEditor
+          mode="batchfile" theme="dracula" tabSize={2}
+          height="200px" width="100%"
+          fontSize={14}
+          onChange={(value) => textContent(value, i)}
+        />
+      case "Shell":
+        return <AceEditor 
+          mode="sh" theme="dracula" tabSize={2}
+          height="200px" width="100%"
+          fontSize={14}
+          onChange={(value) => textContent(value, i)}
+        />
+      case "Python":
+        return <AceEditor
+          mode="python" theme="dracula" tabSize={2}
+          height="200px" width="100%"
+          fontSize={14}
+          onChange={(value) => textContent(value, i)}
+        />
+      default:
+        return <AceEditor
+          theme="dracula" tabSize={2}
+          height="200px" width="100%"
+          fontSize={14}
+        />
     }
+  }
 
-    // lets you add text input to the text fields, saves it in array (?)
-    const textContent=(changeInput,i)=>{
-        const inputdata=[...entry]
-        //gets  value of the element where event occured  
-        inputdata[i]=changeInput.target.value;
-        setEntry(inputdata)
-       }
-
- return(
-
+  return(
     <div className = "step-3" >
     <div className = "form-group">
-    <div className="q5"> 
-        <p> Apppears if SCM was configured</p>
+      {scmType === "Github" && (
+        <div className="q5">
+          <label className="jc-label">Manual</label>
+          <input type="radio" 
+                 id="pr_creation"
+                 value="Manual"
+                 checked={buildTrigger === 'Manual'}
+                 defaultChecked
+                 onChange={handleBuildTriggerSelect}/>
 
-    <div className="p3_opt1">
-        <input type="radio" id="pr_creation" name="selected" value="pr_creation"/>
-        <label className="jc-label">PR Creation</label>
-    </div>
+          <label className="jc-label">Pull Request</label>
+          <input type="radio"
+                 id="pr_creation"
+                 value="PullRequest"
+                 checked={buildTrigger === 'PullRequest'}
+                 onChange={handleBuildTriggerSelect}
+                 defaultChecked/>
 
-    <div className="p3_opt2">
-        <input type="radio" id="push" name="selected" value="push"/>
-        <label className="jc-label">Push</label>
-    </div>
-    </div>
-
-    <div className="q6"> 
-        <p> Build Section </p>
-        <select name="script" id="script">
-        <option disabled value=""> Select an option </option>
-        <option value="batch">Windows Batch File</option>
-        <option value="linux_script">Linux Script File</option>
-        </select>
+          <label className="jc-label">Push</label>
+          <input type="radio"
+                 id="pr_creation"
+                 value="Push"
+                 checked={buildTrigger === 'Push'}
+                 onChange={handleBuildTriggerSelect}
+                 defaultChecked/>
         </div>
+      )}
+      
+      <div className="q6">
+        <p> Build Steps </p>
+        <select name="script" 
+                id="script"
+                onChange={handleScriptTypeChange}>
+          <option disabled value=""> Select a script type </option>
+          <option value="Batch">Batch script</option>
+          <option value="Shell">Shell script</option>
+          <option value="Python">Python script</option>
+        </select>
+      </div>
 
-        <div id="script_input"> 
-        <button id="new_field" onClick={()=>addTextField()}>New Script</button>
-         {entry.map((data,i)=>{
-             return(
-                <div>
-                     <textarea value={data} onChange={e=>textContent(e,i)} />
-                 </div>
-            
-             )
-         })}
-    </div>
+      <div id="script_input">
+        <button id="new_field" 
+                onClick={addEmptyStep}
+                className="cursor-pointer">
+          New Script
+        </button>
+        {buildSteps.map((step, i) => {
+          return <div key={i}>
+            {renderEditor(step.stepType, i)}
+          </div>
+        })}
+      </div>
     </div>
     </div>
  );

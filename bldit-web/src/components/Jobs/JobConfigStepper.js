@@ -89,9 +89,16 @@ const JobConfigStepper = ({projectId}) => {
         onStepDataChange={handleStepDataChange}
       />;
     }  else if (activeStep === 2) {
-      return <ConfigBuild />;
+      return <ConfigBuild
+        scmType={scmType}
+        buildConfigToCreate={buildConfig}
+        onStepDataChange={handleStepDataChange}
+      />;
     }   else if (activeStep === 3)  {
-      return <PostBuild />
+      return <PostBuild
+        scmConfigToCreate={postBuildConfig}
+        onStepDataChange={handleStepDataChange}
+      />
     }
   }
   
@@ -162,7 +169,6 @@ const JobConfigStepper = ({projectId}) => {
       return [];
     }
     console.log("SCM Config to create: ", scmConfig);
-    console.log("Creating SCM Config...");
     
     const errors = [];
     // await axiosPrivate.post(
@@ -187,17 +193,17 @@ const JobConfigStepper = ({projectId}) => {
   //End - SCM
   
   //Build Config
-  const buildStep = {
-    command: "",
-    stepType: "",
-  };
-  
   const [buildConfig, setBuildConfig] = useState({
+    buildTrigger: "Manual",
     buildSteps: [],
   });
   
   const createBuildConfig = async () => {
+    const errors = [];
+    
     console.log("Build Config to create: ", buildConfig);
+    
+    return errors;
   }
 
   //End - Build Config
@@ -207,7 +213,10 @@ const JobConfigStepper = ({projectId}) => {
   });
   
   const createPostBuildConfig = async () => {
+    const errors = [];
     console.log("Post Build Config to create: ", postBuildConfig);
+    
+    return errors;
   }
   //End - Job Config information
 

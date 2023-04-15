@@ -33,7 +33,7 @@ const JobConfig = () => {
           <JobConfigStepper projectId={projectId}/>
         </div>
       </div>
-      <Footer/>
+      {/*<Footer/>*/}
     </div>
   );
 }

@@ -18,6 +18,22 @@
     font-size: smaller;
 }
 
+.sidebar_li Link{
+    display: block;
+    color: white;
+    padding: 8px 16px;
+    text-decoration: none;
+    font-size: smaller;
+}
+
+.sidebar_li span{
+    display: block;
+    color: white;
+    padding: 8px 16px;
+    text-decoration: none;
+    font-size: smaller;
+}
+
 .sidebar_li a.active{
     background-color: #438c97;
     color: white;

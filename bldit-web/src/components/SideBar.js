@@ -7,8 +7,10 @@ import useBldItPrivate from "../hooks/useAxiosPrivate";
 import routes from "../api/bldit/routes";
 import useAuth from "../hooks/useAuth";
 import useRefreshToken from "../hooks/useRefreshToken";
+import job from "../pages/Job";
+import {Alert} from "@material-tailwind/react";
 
-function SideBar({styles}) {
+function SideBar({styles, projectId, jobName}) {
 
     const [currentPage, setCurrentPage] = useState('');
 
@@ -107,7 +109,6 @@ function SideBar({styles}) {
         //TODO: Redirect to Jobs page
     }
 
-
     return (
         // <div>
         <nav>
@@ -120,10 +121,10 @@ function SideBar({styles}) {
                                                            paddingBottom: "2%"
                                                        }}/>
                 </li>
-                {location.pathname.toLowerCase().includes('/') && isNotLoggedIn && (
+                {window.location.pathname.includes('/') && isNotLoggedIn && (
                     <li className="sidebar_li"><a href="/SignUp">Sign Up</a></li>
                 )}
-                {location.pathname.toLowerCase().includes('/') && isNotLoggedIn && (
+                {window.location.pathname.includes('/') && isNotLoggedIn && (
                     <li className="sidebar_li"><a href="/Login">Login</a></li>
                 )}
                 {!isNotLoggedIn && (<li className="sidebar_li"><a data-page="" href="/">Home</a></li>)}
@@ -131,57 +132,69 @@ function SideBar({styles}) {
                 {!isNotLoggedIn && (<li className="sidebar_li"><a href="/CreateProject" data-page="createproject">Create Project</a>
                 </li>)}
                 {!isNotLoggedIn && (<li className="sidebar_li"><a href="/Logout">Logout</a></li>)}
-                {location.pathname.toLowerCase().includes('/jobs/job') && !isNotLoggedIn &&(
+                {window.location.pathname.includes(`/jobs/${jobName}`) && !isNotLoggedIn &&(
                     <hr/>
                 )}
-                {location.pathname.toLowerCase().includes('/jobs/job') && !isNotLoggedIn &&(
+                {window.location.pathname.includes(`/jobs/${jobName}`) && !isNotLoggedIn &&(
                     <li className="sidebar_li">
                         <span>Job Controls</span>
                     </li>
                 )}
-                {location.pathname.toLowerCase().includes('/jobs/job') && !isNotLoggedIn &&(
+                {window.location.pathname.includes(`/jobs/${jobName}`) && !isNotLoggedIn &&(
                     <li className="sidebar_li">
                         <Link to="/JobConfig">
                             Configure
                         </Link>
                     </li>
                 )}
-                {location.pathname.toLowerCase().includes('/jobs/job') && !isNotLoggedIn &&(
+                {window.location.pathname.includes(`/jobs/${jobName}`) && !isNotLoggedIn &&(
                     <li className="sidebar_li">
-                        <span onClick={(e) => startBuild(e, projectId, jobName)}>
+                        <Link onClick={(e) => startBuild(e, projectId, jobName)}>
                             Build
-                        </span>
+                        </Link>
                     </li>
                 )}
-                {location.pathname.toLowerCase().includes('/jobs/job') && !isNotLoggedIn &&(
+                {window.location.pathname.includes(`/jobs/${jobName}`) && !isNotLoggedIn &&(
                     <li className="sidebar_li">
                         <Link to="/EditJob">
-
-
                             Edit Job
                         </Link>
                     </li>
                 )}
-                {location.pathname.toLowerCase().includes('/jobs/job') && !isNotLoggedIn &&(
+                {window.location.pathname.includes(`/jobs/${jobName}`) && !isNotLoggedIn &&(
                     <li className="sidebar_li">
-                        <span>
-
-
-              Delete Job
-              </span>
+                        <span>Delete Job</span>
                     </li>
                 )}
+                {window.location.pathname.includes(`/jobs/${jobName}`) && !isNotLoggedIn &&(
+                  <>
+                      <Alert color="green"
+                             show={showSuccessAlert}
+                             dismissible={{
+                                 onClose: () => setShowSuccessAlert(false),
+                             }}
+                             className="w-30 cursor-pointer">
+                          Build started
+                      </Alert>
+                      <Alert color="red"
+                             show={showFailedAlert}
+                             dismissible={{
+                                 onClose: () => setShowFailedAlert(false),
+                             }}
+                             className="w-30 cursor-pointer">
+                          Build failed to start
+                      </Alert>
+                  </>
+                )}
                 <div style={{height: "10%", width: "100%", bottom: 0, position: "absolute", textAlign: "center"}}>
-                    <p style={{color: "white", fontSize: "small", textAlign: "center"}}> &copy; 2023
-                        Auto Mates</p>
+                    <p style={{color: "white", fontSize: "small", textAlign: "center"}}> 
+                        &copy; 2023 Auto Mates
+                    </p>
                 </div>
             </ul>
         </nav>
         // </div>
-    )
-        ;
-
-
+    );
 }
 
 export default SideBar;

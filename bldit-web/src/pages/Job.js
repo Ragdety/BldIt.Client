@@ -30,7 +30,7 @@ const Job = () => {
         <>
             <div>
                 <div style={{width:"10%"}}>
-                    <SideBar/>
+                    <SideBar projectId={projectId} jobName={jobName}/>
                 </div>
                 <div className="CreateProjectDiv" style={{width:"90%", float:"right"}}>
                     <div className="ProjectForm" style={{paddingTop:"3%", textAlign:'left'}}>

@@ -28,12 +28,12 @@ const ProjectsList = () => {
   }
 
   useEffect(() => {
-    const f = async () => {
+    const getProjects = async () => {
       const data = await fetchProjects();
       setProjectDetails(data);
     };
 
-    f();
+    getProjects();
 
   }, []);
 
@@ -105,7 +105,7 @@ const ProjectsList = () => {
         </table>
       ) : (
         <div>
-          <Typography style={{color:"white"}}>No projects yet</Typography>
+          <Typography color="white" variant="h4">No projects yet</Typography>
         </div>
       )}
     </>

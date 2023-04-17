@@ -5,10 +5,12 @@ import {useEffect} from "react";
 import routes from "../../api/bldit/routes";
 import useBldItPrivate from "../../hooks/useAxiosPrivate";
 import moment from "moment";
+import Button from "@mui/material/Button";
 
 const JobsList = ({ projectId }) => {
   const [jobs, setJobs] = useState([]);
   const [error, setError] = useState(false);
+  const [errorContent, setErrorContent] = useState("");
   
   const bldItPrivate = useBldItPrivate();
   const navigate = useNavigate();
@@ -21,6 +23,7 @@ const JobsList = ({ projectId }) => {
           setJobs(response.data);
       }).catch((error) => {
         setError(true);
+        setErrorContent(error.response.data.detail);
         console.log(error);
       });
     }
@@ -32,11 +35,27 @@ const JobsList = ({ projectId }) => {
     navigate(`/projects/${projectId}/jobs/${jobName}`);
   }
 
+  function navToConfigure() {
+    navigate(`/projects/${projectId}/jobs/jobConfig`);
+  }
+  
+  const handleDeleteJob = async (jobName) => {
+    // const res = await bldItPrivate.delete(routes.jobs.deleteJob
+    //   .replace("{projectId}", projectId)
+    //   .replace("{jobName}", jobName));
+    //
+    // console.log(res);
+    //
+    // setJobs(jobs.filter((job) => job.jobName !== jobName));
+    
+    console.log("Not implemented yet");
+  }
+
   return (
     <>
       {error ? (
-        <Typography variant="h5" color="white">
-          Error loading jobs. Please refresh the page
+        <Typography variant="h5" color="red">
+          Error loading jobs: {errorContent}
         </Typography>
       ) : (
         <>
@@ -98,17 +117,18 @@ const JobsList = ({ projectId }) => {
                     scope="row"
                     className="px-6 py-4 font-light text-gray-900 whitespace-nowrap dark:text-white"
                   >
-                    <Link className="cursor-pointer no-underline" to="/EditJob">
+                    {/*This should eventually go to job edit page, which would load the job's config (TODO: Implement)*/}
+                    <Button className="cursor-pointer no-underline" onClick={navToConfigure}>
                       Configure
-                    </Link>
+                    </Button>
                   </th>
                   <th
                     scope="row"
                     className="px-6 py-4 font-light text-gray-900 whitespace-nowrap dark:text-white sm:rounded-lg"
                   >
-                    <Link className="cursor-pointer no-underline">
+                    <Button className="cursor-pointer no-underline" onClick={() => handleDeleteJob(job.name)}>
                       Delete
-                    </Link>
+                    </Button>
                   </th>
                 </tr>
               ))}
@@ -119,6 +139,8 @@ const JobsList = ({ projectId }) => {
               <Typography color="white">No jobs yet</Typography>
             </div>
           )}
+
+          <button className="new" onClick={navToConfigure}>Create Job</button>
         </>
       )}
     </>

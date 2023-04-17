@@ -15,6 +15,7 @@ import BuildLogs from "../pages/BuildLogs";
 import CreateProject from "../pages/CreateProject";
 import ForgotPassword from "../pages/ForgotPassword";
 import Job from "../pages/Job";
+import JobConfig from "../pages/JobConfig";
 
 
 function AppRoutes() {
@@ -42,6 +43,7 @@ function AppRoutes() {
             <Route path="/projects/:projectId/jobs" element={<Jobs />} />
             <Route path="/createproject" element={<CreateProject />} />
             <Route path="/projects/:projectId/jobs/:jobName" element={<Job />} />
+            <Route path="/projects/:projectId/jobs/jobConfig" element={<JobConfig />} />
             <Route path="/projects/:projectId/jobs/:jobName/builds/:buildNumber/logs/:buildId" element={<BuildLogs />} />
           </Route>
         </Route>

@@ -26,7 +26,7 @@ const BuildList = ({projectId, jobName}) => {
     }
 
     loadBuilds();
-  }, []);
+  }, [projectId, jobName]);
 
   //UseEffect to set the builds
   useEffect(() => {
@@ -34,12 +34,10 @@ const BuildList = ({projectId, jobName}) => {
       if (getBuildsApi.success === true) {
         setBuilds(getBuildsApi.data);
       }
-
-      console.log(getBuildsApi.data);
     }
 
     handleGetBuilds();
-  }, [getBuildsApi.data]);
+  }, [getBuildsApi.data, getBuildsApi.success]);
   
   const buildCardStyle = {
     backgroundColor: "white",

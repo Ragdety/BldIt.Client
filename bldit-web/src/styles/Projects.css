@@ -68,6 +68,8 @@
 ::-webkit-scrollbar-track {
   background-color: #f5f5f5;
   border-radius: 10px;
+  margin-bottom: 4px;
+  margin-top: 4px;
 }
 
 /* Style scrollbar thumb */
@@ -79,16 +81,35 @@
 
 /* Set scrollbar width */
 ::-webkit-scrollbar {
-  width: 6px;
+  width: 2px;
 }
 
 /* Set scrollbar height */
-::-webkit-scrollbar-vertical {
-  height: 50px; /* adjust this value to make the scrollbar shorter */
-}
+/*::-webkit-scrollbar-vertical {*/
+/*  height: 50px; !* adjust this value to make the scrollbar shorter *!*/
+/*}*/
 
 /* Style scrollbar top and bottom edges */
 ::-webkit-scrollbar-corner {
   background-color: #f5f5f5;
   border-radius: 0.5rem;
+}
+
+.buttonsDesign{
+  background-color: black;
+  border-radius: 1rem;
+  color: white;
+  border: none;
+  padding:5px 25px;
+  margin-right:5px;
+  font-family: Consolas;
+  text-transform: capitalize;
+  letter-spacing: 2px;
+  transition: background-color 0.3s ease;
+  cursor: pointer;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.buttonsDesign:hover{
+  background-color: #438c97;
 }

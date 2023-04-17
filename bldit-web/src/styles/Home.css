@@ -159,3 +159,10 @@ img {
   padding-left: 24px;
   font: 10px "Fira Sans", serif;
 }
+
+.mainPageContent{
+  height: 100%;
+  width: 100%;
+  background-image: url("../assets/AMbg.jpeg");
+  background-size: cover;
+}

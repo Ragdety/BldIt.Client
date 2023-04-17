@@ -17,6 +17,7 @@ import ForgotPassword from "../pages/ForgotPassword";
 import Job from "../pages/Job";
 import JobConfig from "../pages/JobConfig";
 
+
 function AppRoutes() {
   return (
     <Routes>
@@ -32,6 +33,8 @@ function AppRoutes() {
         <Route path="/404" element={<NotFound />} />
         <Route path="/logout" element={<Logout />} />
         <Route path="/forgotpassword" element={<ForgotPassword />} />
+
+
 
         {/*protected routes*/}
         <Route element={<PersistLogin/>}>

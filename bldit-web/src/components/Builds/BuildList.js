@@ -76,7 +76,7 @@ const BuildList = ({projectId, jobName}) => {
         </table>
       ) : (
         <div>
-          <Typography color="gray">
+          <Typography color="white">
             No builds yet
           </Typography>
         </div>

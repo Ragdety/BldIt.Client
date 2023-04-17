@@ -33,12 +33,6 @@ const useBldItPrivate = () => {
 
           //Re-try the previous request
           return blditClientPrivate(prevRequest);
-
-          //Before:
-          //Redirect to Login page (for now)
-          //window.location.href = "/login";
-          //Reject the promise for now since we're redirecting to login
-          // return Promise.reject(error);
         }
 
         return Promise.reject(error);

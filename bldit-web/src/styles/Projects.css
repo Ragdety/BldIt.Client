@@ -97,6 +97,7 @@
 
 .buttonsDesign{
   background-color: black;
+  border-radius: 1rem;
   color: white;
   border: none;
   padding:5px 25px;
@@ -105,6 +106,8 @@
   text-transform: capitalize;
   letter-spacing: 2px;
   transition: background-color 0.3s ease;
+  cursor: pointer;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
 
 .buttonsDesign:hover{

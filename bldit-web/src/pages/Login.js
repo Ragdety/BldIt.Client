@@ -1,7 +1,7 @@
 import React from "react";
 import { useState, useRef, useEffect, useContext } from "react";
 import "../styles/Login.css";
-import logo from "../assets/logo.png";
+import logo from "../assets/AM-logo.jpeg";
 import { useNavigate, useLocation } from "react-router-dom";
 import useApi from "../hooks/useApi";
 import identityApi from "../services/auth";

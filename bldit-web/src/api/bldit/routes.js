@@ -4,7 +4,7 @@ const baseRoutes = {
   jobs: "/projects/{projectId}/jobs",
   jobConfigs: "/projects/{projectId}/jobs/{jobName}/configs",
   builds: "/projects/{projectId}/jobs/{jobName}/builds",
-  buildConfigs: "/projects/{projectId}/jobs/{jobName}/builds/{buildNumber}/configs",
+  buildConfigs: "/projects/{projectId}/jobs/{jobName}/buildConfigs",
   githubCredentials: "/github/credentials",
   githubRepos: "/github/credentials/{credentialId}/repositories"
 }
@@ -46,7 +46,14 @@ export const routes = {
     getBuildLog: `${baseRoutes.builds}/{buildNumber}/log`,
   },
   buildConfigs: {
-    
+    createBuildConfig: `${baseRoutes.buildConfigs}`,
+    getBuildConfig: `${baseRoutes.buildConfigs}/{configId}`,
+    updateBuildConfig: `${baseRoutes.buildConfigs}/{configId}`,
+    steps: {
+      getBuildSteps: `${baseRoutes.buildConfigs}/{configId}/steps`,
+      getBuildStep: `${baseRoutes.buildConfigs}/{configId}/steps/{number}`,
+      deleteBuildStep: `${baseRoutes.buildConfigs}/{configId}/steps/{number}`,
+    }
   },
   github: {
     credentials: {

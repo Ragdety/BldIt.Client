@@ -10,6 +10,7 @@ import Button from "@mui/material/Button";
 const JobsList = ({ projectId }) => {
   const [jobs, setJobs] = useState([]);
   const [error, setError] = useState(false);
+  const [errorContent, setErrorContent] = useState("");
   
   const bldItPrivate = useBldItPrivate();
   const navigate = useNavigate();
@@ -22,6 +23,7 @@ const JobsList = ({ projectId }) => {
           setJobs(response.data);
       }).catch((error) => {
         setError(true);
+        setErrorContent(error.response.data.detail);
         console.log(error);
       });
     }
@@ -52,8 +54,8 @@ const JobsList = ({ projectId }) => {
   return (
     <>
       {error ? (
-        <Typography variant="h5" color="white">
-          Error loading jobs. Please refresh the page
+        <Typography variant="h5" color="red">
+          Error loading jobs: {errorContent}
         </Typography>
       ) : (
         <>
@@ -137,6 +139,8 @@ const JobsList = ({ projectId }) => {
               <Typography color="white">No jobs yet</Typography>
             </div>
           )}
+
+          <button className="new" onClick={navToConfigure}>Create Job</button>
         </>
       )}
     </>

@@ -133,19 +133,19 @@ const JobConfigStepper = ({projectId}) => {
     const errors = [];
     console.log("Job to create: ", jobToCreate);
     
-    // await axiosPrivate.post(routes.jobs.createJob
-    //   .replace("{projectId}", projectId), jobToCreate)
-    //   .then((response) => {
-    //     console.log("Job created successfully");
-    //     const jobCreated = response.data;
-    //     setJobConfigId(jobCreated.latestJobConfigId);
-    //   })
-    //   .catch((error) => {
-    //     console.log("Job creation failed");
-    //     console.log(error);
-    //     errors.push(error.response.data.detail);
-    //     return errors;
-    //   })
+    await axiosPrivate.post(routes.jobs.createJob
+      .replace("{projectId}", projectId), jobToCreate)
+      .then((response) => {
+        console.log("Job created successfully");
+        const jobCreated = response.data;
+        setJobConfigId(jobCreated.latestJobConfigId);
+      })
+      .catch((error) => {
+        console.log("Job creation failed");
+        console.log(error);
+        errors.push(error.response.data.detail);
+        return errors;
+      });
     
     return errors;
   }
@@ -171,20 +171,20 @@ const JobConfigStepper = ({projectId}) => {
     console.log("SCM Config to create: ", scmConfig);
     
     const errors = [];
-    // await axiosPrivate.post(
-    //   routes.jobConfigs.scm.createSCM
-    //     .replace("{projectId}", projectId)
-    //     .replace("{jobName}", jobToCreate.jobName)
-    //     .replace("{configId}", jobConfigId), scmConfig)
-    //   .then((response) => {
-    //     console.log("SCM Config created successfully");
-    //     console.log(response.data);
-    //   }).catch((error) => {
-    //     console.log("SCM Config creation failed");
-    //     console.log(error);
-    //     errors.push(error.response.data.detail);
-    //     return errors;
-    //   });
+    await axiosPrivate.post(
+      routes.jobConfigs.scm.createSCM
+        .replace("{projectId}", projectId)
+        .replace("{jobName}", jobToCreate.jobName)
+        .replace("{configId}", jobConfigId), scmConfig)
+      .then((response) => {
+        console.log("SCM Config created successfully");
+        console.log(response.data);
+      }).catch((error) => {
+        console.log("SCM Config creation failed");
+        console.log(error);
+        errors.push(error.response.data.detail);
+        return errors;
+      });
 
     
     return errors;
@@ -202,6 +202,19 @@ const JobConfigStepper = ({projectId}) => {
     const errors = [];
     
     console.log("Build Config to create: ", buildConfig);
+    
+    await axiosPrivate.post(
+      routes.buildConfigs.createBuildConfig
+        .replace("{projectId}", projectId)
+        .replace("{jobName}", jobToCreate.jobName), buildConfig)
+      .then((response) => {
+        console.log("Build Config created successfully");
+        console.log(response.data);
+      }).catch((error) => {
+        console.log("Build Config creation failed");
+        console.log(error);
+        errors.push(error.response.data.detail);
+      });
     
     return errors;
   }

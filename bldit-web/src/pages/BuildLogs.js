@@ -50,7 +50,7 @@ const BuildLogs = () => {
       setCurrentRoom(buildLogRoom);
       connection.on("BuildOutputReceived",
         log => {
-          console.log(log)
+          //console.log(log)
           setLogs(prevState => {
             return [...prevState, log];
           });

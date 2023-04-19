@@ -5,6 +5,9 @@ import Navbar from "../components/Navbar";
 import BannerImage from "../assets/pic.png";
 import {useParams} from "react-router-dom";
 import BuildCardApi from "../components/Builds/BuildCardApi";
+import SideBar from "../components/SideBar";
+import ProjectsList from "../components/Projects/ProjectsList";
+import AceEditor from "react-ace";
 
 const BuildLogs = () => {
   const buildStreamURL = 'http://localhost:5005/buildStream';
@@ -81,36 +84,88 @@ const BuildLogs = () => {
     joinBuildLogRoom();
   }, []);
 
+    // Setting up the background image and height and width
+    useEffect(() => {
+        document.body.classList.add("mainContent");
+
+        // Cleanup function to remove the class when the component unmounts
+        return () => {
+            document.body.classList.remove("mainContent");
+        };
+    }, []);
+
   return (
-    <div className="content">
-      <div className="content">
-        <Navbar />
-        <div className="home" style={{ backgroundImage: `url(${BannerImage})` }}>
-          <div className="flex items-center justify-center h-screen">
-            <BuildCardApi projectId={projectId} jobName={jobName} buildNumber={buildNumber} />
-            <div
-              className="max-w-sm max-h-72 w-full p-6 text-center bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-              <p>
-                <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-                  Realtime Logs
-                </h5>
-              </p>
-              <p className="mb-3 font-normal text-gray-700 dark:text-gray-400 overflow-y-auto max-h-72" >
-                Logs from build: {buildId}
-                {logs.map((log, index) => (
-                    <p key={index}
-                       ref={logsRef}
-                       className="mb-3 font-normal text-gray-700 dark:text-gray-400">
-                      {log}
-                    </p>
-                  )
-                )}
-              </p>
-            </div>
+      <div className="mainContent">
+          {/*SideBar*/}
+          <div style={{width: "10%", height: "100%", display: "flex"}}>
+              <SideBar/>
           </div>
-        </div>
+
+          {/*Build Info*/}
+          <div className="ProjectTableDiv">
+              <div className="ProjectTable" style={{marginTop:"2%"}}>
+                  <BuildCardApi projectId={projectId} jobName={jobName} buildNumber={buildNumber}/>
+              </div>
+          </div>
+
+          {/*Real Time Logs*/}
+          <div className="ProjectTableDiv">
+              {/*<div><AceEditor*/}
+              {/*    theme="dracula" tabSize={2}*/}
+              {/*    height="200px" width="100%"*/}
+              {/*    fontSize={14}*/}
+              {/*    onChange={(value) => textContent(value, i)}*/}
+              {/*/>*/}
+              <div style={{backgroundColor:"#44475a", marginLeft:"auto", marginRight:"auto", width:"88%",
+                  textAlign:"left", borderRadius:"0.5rem", maxHeight:"600px", padding:"1%", marginTop:"1%"}}>
+
+                  <p className="mb-3 font-normal text-gray-700 dark:text-gray-400 overflow-y-auto max-h-72"
+                  style={{paddingLeft:"1%", color:"white", fontFamily: "Courier New", maxHeight:"550px"}}>
+                                  Logs from build: {buildId}
+                                {logs.map((log, index) => (
+                                      <p key={index}
+                                         ref={logsRef}
+                                          className="mb-3 font-normal text-gray-700 dark:text-gray-400"
+                                      style={{color:"white"}}>
+                                       {log}
+                                      </p>
+                                    )
+                                                 )}
+                                    </p>
+
+              </div>
+          </div>
       </div>
-    </div>
+
+    // <div className="content">
+    //   <div className="content">
+    //     <Navbar />
+    //     <div className="home" style={{ backgroundImage: `url(${BannerImage})` }}>
+    //       <div className="flex items-center justify-center h-screen">
+    //         <BuildCardApi projectId={projectId} jobName={jobName} buildNumber={buildNumber} />
+    //         <div
+    //           className="max-w-sm max-h-72 w-full p-6 text-center bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+    //           <p>
+    //             <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+    //               Realtime Logs
+    //             </h5>
+    //           </p>
+    //           <p className="mb-3 font-normal text-gray-700 dark:text-gray-400 overflow-y-auto max-h-72" >
+    //             Logs from build: {buildId}
+    //             {logs.map((log, index) => (
+    //                 <p key={index}
+    //                    ref={logsRef}
+    //                    className="mb-3 font-normal text-gray-700 dark:text-gray-400">
+    //                   {log}
+    //                 </p>
+    //               )
+    //             )}
+    //           </p>
+    //         </div>
+    //       </div>
+    //     </div>
+    //   </div>
+    // </div>
   );
 };
 

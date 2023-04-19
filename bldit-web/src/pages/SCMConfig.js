@@ -15,7 +15,7 @@ function SCMConfig({scmConfigToCreate, onStepDataChange}) {
   return (
     <div className="step-2" >
       <div className = "form-group" >
-        <div className = "q4" >
+        <div className = "q4" style={{marginLeft:"auto !important"}}>
           <label className="jc-label">None</label>
           <input type="radio" 
                  id="none" 

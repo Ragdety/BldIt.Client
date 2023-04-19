@@ -40,8 +40,17 @@
     float: right;
 }
 
+.ProjectInfoDiv{
+    width:90%;
+    margin:auto;
+    max-height:500px;
+    overflow-y:auto;
+    overflow-x:hidden;
+}
+
 .ProjectTable{
     width:90%;
+    padding-right: 0.5%;
     margin:auto;
     max-height:500px;
     overflow-y:auto;

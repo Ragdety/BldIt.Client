@@ -140,7 +140,8 @@ const JobsList = ({ projectId }) => {
             </div>
           )}
 
-          <button className="new" onClick={navToConfigure}>Create Job</button>
+          <button className="buttonsDesign" onClick={navToConfigure}>Create Job</button>
+
         </>
       )}
     </>

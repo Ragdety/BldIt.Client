@@ -53,7 +53,7 @@ const JobCard = ({projectId, jobName}) => {
 
   return (
     <>
-      <Card>
+      <Card style={{boxShadow: "0px 0px 15px #438c97"}}>
         <Typography variant="h5" className="mb-1 mt-1 p-5">
           {job.name}
         </Typography>

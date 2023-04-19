@@ -25,21 +25,21 @@ const General = ({jobToCreate, onStepDataChange}) => {
   return (
     <div className="step-1" >
       <div className="q1">
-        <label className="jc-label">Job Name</label>
+        {/*<label className="jc-label">Job Name</label>*/}
         <input type="text" 
                id="jobName"
                onChange={handleJobNameChange}
-               placeholder="Sample Name: " />
+               placeholder="Job Name" />
       </div>
       <div className="q2">
-        <label className="jc-label">Job Description</label>
+        {/*<label className="jc-label">Job Description</label>*/}
         <input id="jobDescription" 
                type="text"
                onChange={handleJobDescriptionChange}
-               placeholder="Describe the job..."/>
+               placeholder="Job Description"/>
       </div>
       <div className="q3">
-        <label className="jc-label">Job Type</label>
+        {/*<label className="jc-label">Job Type</label>*/}
         <select name="job_type" id="job_type" value={jobType} onChange={handleJobTypeChange}>
           <option value="Freestyle">Freestyle</option>
           <option value="Pipeline" disabled>Pipeline</option>

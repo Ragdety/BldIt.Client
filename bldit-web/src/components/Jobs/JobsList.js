@@ -6,8 +6,10 @@ import routes from "../../api/bldit/routes";
 import useBldItPrivate from "../../hooks/useAxiosPrivate";
 import moment from "moment";
 import Button from "@mui/material/Button";
+import useAxiosPrivate from "../../hooks/useAxiosPrivate";
 
 const JobsList = ({ projectId }) => {
+  const axiosPrivate = useAxiosPrivate();
   const [jobs, setJobs] = useState([]);
   const [error, setError] = useState(false);
   const [errorContent, setErrorContent] = useState("");
@@ -32,23 +34,39 @@ const JobsList = ({ projectId }) => {
   }, []);
 
   const navigateToJob = (jobName) => {
-    navigate(`/projects/${projectId}/jobs/${jobName}`);
+    // console.log(jobName.name);
+    navigate(`/projects/${projectId}/jobs/${jobName.name}`);
   }
 
   function navToConfigure() {
     navigate(`/projects/${projectId}/jobs/jobConfig`);
   }
   
-  const handleDeleteJob = async (jobName) => {
-    // const res = await bldItPrivate.delete(routes.jobs.deleteJob
-    //   .replace("{projectId}", projectId)
-    //   .replace("{jobName}", jobName));
+  const handleDeleteJob = async (e, id) => {
+    e.preventDefault();
     //
-    // console.log(res);
+    const url = window.location.href;
+    const urlArray = url.split(/\/\/|\?|\/|\./);
+
+    bldItPrivate.delete(routes.jobs.deleteJob
+        .replace("{projectId}", urlArray[3])
+        .replace("{jobName}", id.name))
+        .then((response) => {
+          window.location.reload();
+        }).catch((error) => {
+          console.log(error);
+    });
+
     //
-    // setJobs(jobs.filter((job) => job.jobName !== jobName));
-    
-    console.log("Not implemented yet");
+    // const response = await axiosPrivate.delete(`/projects/${urlArray[3]}/jobs/${id.name}`)
+    //     .then(response => {
+    //       window.location.reload();
+    //     })
+    //     .catch(error => {
+    //       console.log(error.response.data);
+    //     });
+    // console.log(`/projects/${urlArray[3]}/jobs/${id.name}`);
+    // window.location.reload();
   }
 
   return (
@@ -95,7 +113,7 @@ const JobsList = ({ projectId }) => {
                   <th
                     scope="row"
                     className="px-6 py-4 font-light text-gray-900 whitespace-nowrap dark:text-white cursor-pointer sm:rounded-lg"
-                    onClick={() => navigateToJob(job.name)}
+                    onClick={() => navigateToJob(job)}
                   >
                       {job.name}
                   </th>
@@ -126,7 +144,8 @@ const JobsList = ({ projectId }) => {
                     scope="row"
                     className="px-6 py-4 font-light text-gray-900 whitespace-nowrap dark:text-white sm:rounded-lg"
                   >
-                    <Button className="cursor-pointer no-underline" onClick={() => handleDeleteJob(job.name)}>
+                    <Button className="cursor-pointer no-underline" onClick={(e) =>
+                    { handleDeleteJob(e, job) }}>
                       Delete
                     </Button>
                   </th>

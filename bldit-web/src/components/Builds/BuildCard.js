@@ -31,7 +31,7 @@ const BuildCard = ({build, style, onClick}) => {
                        h-14 w-14 rounded ${getBuildStyle()}`}>
         {getBuildIcon()}
       </div>
-      <div className="flex-grow flex flex-col ml-4 ">
+      <div className="flex-grow flex flex-col ml-4 text-center">
         <span className="text-xl font-bold">Build {build?.number}</span>
         <div className="flex items-center justify-between ">
           <span className="text-gray-500">{moment(build?.createdAt).format('DD MMM, YYYY')}</span>

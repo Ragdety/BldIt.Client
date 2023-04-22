@@ -36,7 +36,7 @@ const Job = () => {
                     <div className="ProjectForm" style={{paddingTop:"3%", textAlign:'left'}}>
                         <JobCard projectId={projectId} jobName={jobName}/>
                     </div>
-                    <div className="ProjectTable">
+                    <div className="ProjectTable" style={{marginTop:"1%", maxHeight:"420px"}}>
                         <BuildList projectId={projectId} jobName={jobName}/>
                     </div>
                 </div>

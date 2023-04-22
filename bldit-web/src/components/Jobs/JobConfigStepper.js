@@ -299,11 +299,11 @@ const JobConfigStepper = ({projectId}) => {
           <Typography sx={{ mt: 2, mb: 1 }} variant="h6" color="white">
             Job was created!
           </Typography>
-          <Box sx={{ display: 'flex', flexDirection: 'row', pt: 2 }}>
-            <Box sx={{ flex: '1 1 auto' }} />
-            <Button variant="contained" onClick={navigateToJobs}>
+          <Box sx={{ display: 'block !important', flexDirection: 'row', pt: 2 }}>
+            <Box sx={{ flex: '1 1 auto' }}  />
+            <button variant="contained" onClick={navigateToJobs} class="buttonsDesign">
               See Jobs
-            </Button>
+            </button>
           </Box>
         </>
       ) : (
@@ -318,15 +318,17 @@ const JobConfigStepper = ({projectId}) => {
                 <div className="text-red-500 text-center pt-2">{error}</div>
             ))}
           </Box>
-          <Box sx={{ display: 'flex', flexDirection: 'row', pt: 2 }}>
-            <Box sx={{ flex: '1 1 auto' }} />
-            <Button
-              variant="contained"
-              onClick={handleNext}
-              sx={{ ml: 1 }}
+          <Box sx={{ display: 'block !important', flexDirection: 'row', pt: 2 }}>
+            <button
+                variant="contained"
+                onClick={handleNext}
+                sx={{ml: 1}}
+                className="buttonsDesign"
             >
               {activeStep === steps.length - 1 ? 'Finish' : 'Next'}
-            </Button>
+            </button>
+            <Box sx={{ flex: '1 1 auto' }} />
+
           </Box>
         </>
       )}

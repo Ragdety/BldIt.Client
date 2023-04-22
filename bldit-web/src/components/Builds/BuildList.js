@@ -41,11 +41,13 @@ const BuildList = ({projectId, jobName}) => {
   
   const buildCardStyle = {
     backgroundColor: "white",
-    borderRadius: "10px",
+    borderRadius: "0.5rem",
     boxShadow: "0 0 10px 0 rgba(0, 0, 0, 0.1)",
     padding: "20px",
     marginBottom: "20px",
     cursor: "pointer",
+    marginLeft: "2%",
+    marginRight: "2%"
   }
 
   const navigate = useNavigate();
@@ -57,14 +59,14 @@ const BuildList = ({projectId, jobName}) => {
     <>
       {builds.length ? (
         <table className="w-full table-auto p-0 text-sm text-left text-gray-500 border-1 shadow-md sm:rounded-lg">
-          <thead className="text-xs text-gray-700 uppercase bg-gray-50">
+          <thead className="text-xs text-gray-700 uppercase bg-gray-50 sm:rounded-lg">
           <tr>
-            <th scope="col" className="px-6 py-3">
+            <th scope="col" className="px-6 py-3 sm:rounded-lg">
               Builds
             </th>
           </tr>
           </thead>
-          <tbody className="h-50 overflow-y-scroll w-full">
+          <tbody className="h-50 overflow-y-scroll w-full sm:rounded-lg">
           {builds.map((build) => (
             <BuildCard build={build} 
                        key={build.id} 

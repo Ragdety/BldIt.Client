@@ -43,6 +43,7 @@ const ConfigBuild = ({buildConfigToCreate, onStepDataChange, scmType}) => {
 
   const handleScriptTypeChange = (event) => {
     setScriptType(event.target.value);
+    console.log(event.target.value);
   }
   
   const renderEditor = (stepType, i) => {
@@ -123,7 +124,8 @@ const ConfigBuild = ({buildConfigToCreate, onStepDataChange, scmType}) => {
       <div id="script_input">
         <button id="new_field" 
                 onClick={addEmptyStep}
-                className="cursor-pointer">
+                className="buttonsDesign"
+                style={{marginLeft:"auto", marginBottom:"2%", marginTop:"2%"}}>
           New Script
         </button>
         {buildSteps.map((step, i) => {

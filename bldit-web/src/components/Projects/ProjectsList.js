@@ -78,11 +78,9 @@ const ProjectsList = () => {
               </th>
               <th
                 scope="row"
-                className="px-6 py-4 font-light text-gray-900 whitespace-normal overflow-hidden dark:text-white text-left"
+                className="px-6 py-4 font-light text-gray-900 whitespace-normal overflow-hidden dark:text-white text-left cursor-pointer no-underline"
               >
-                <th className="cursor-pointer no-underline">
-                  {project.description}
-                </th>
+                {project.description}
               </th>
               <th
                 scope="row"

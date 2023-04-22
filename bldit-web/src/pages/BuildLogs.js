@@ -47,6 +47,8 @@ const BuildLogs = () => {
       }
 
       console.log(result.logs);
+      setLogs(result.logs);
+      
       setCurrentRoom(buildLogRoom);
       connection.on("BuildOutputReceived",
         log => {

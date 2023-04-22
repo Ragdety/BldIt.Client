@@ -7,6 +7,7 @@ import JobsList from "../components/Jobs/JobsList";
 import "../styles/Jobs.css";
 import {useParams} from "react-router-dom";
 import SideBar from "../components/SideBar";
+import BuildWorkers from "../components/BuildWorkers/BuildWorkers";
 
 const Jobs = () => {
     const {projectId} = useParams();
@@ -46,6 +47,7 @@ const Jobs = () => {
                     <div className="ProjectTable" style={{boxShadow: "0px 0px 15px #438c97", borderRadius:"1rem"}}>
                         <ProjectCard id={projectId}/>
                     </div>
+                    <BuildWorkers/>
                 </div>
 
                 <div className="ProjectTableDiv">

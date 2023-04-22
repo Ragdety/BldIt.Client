@@ -21,10 +21,6 @@ const Jobs = () => {
         };
     }, []);
 
-    function navToConfigure() {
-        navigate(`/projects/${projectId}/jobs/jobConfig`);
-    }
-
     return (
         <>
             <div>

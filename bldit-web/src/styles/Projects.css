@@ -82,6 +82,7 @@
 /* Set scrollbar width */
 ::-webkit-scrollbar {
   width: 2px;
+  display: none;
 }
 
 /* Set scrollbar height */
@@ -112,4 +113,21 @@
 
 .buttonsDesign:hover{
   background-color: #438c97;
+}
+
+.log {
+  font-family: "Courier New", Courier, monospace;
+  line-height: 1.5;
+  padding-left: 50px;
+  counter-reset: linenum;
+}
+
+.log:before {
+  content: counter(linenum) ". ";
+  counter-increment: linenum;
+  display: inline-block;
+  width: 40px;
+  text-align: right;
+  margin-left: -50px;
+  color: gray;
 }

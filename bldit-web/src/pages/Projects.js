@@ -50,7 +50,7 @@ const Projects = () => {
                     <div className="ProjectTable">
                         <ProjectsList/>
                     </div>
-                    <button className="buttonsDesign" style={{marginTop:"3%"}}>Create Project</button>
+                    <button className="buttonsDesign" style={{marginTop:"3%"}} onClick={navigateToCreateProject}>Create Project</button>
                 </div>
             </div>
             {/*<Navbar />*/}

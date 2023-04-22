@@ -44,17 +44,18 @@ const Jobs = () => {
                 </div>
 
                 <div className="pb-6" style={{width: "90%", float: "right"}}>
-                    <div className="ProjectTable" style={{boxShadow: "0px 0px 15px #438c97", borderRadius:"1rem"}}>
+                    <div className="ProjectInfoDiv" style={{boxShadow: "0px 0px 15px #438c97", borderRadius:"1rem" }}>
                         <ProjectCard id={projectId}/>
                     </div>
                     <BuildWorkers/>
                 </div>
 
                 <div className="ProjectTableDiv">
-                    <div className="ProjectTable" style={{maxHeight:"400px"}}>
+                    <div className="ProjectTable" style={{maxHeight:"350px"}}>
                         <JobsList projectId={projectId}/>
                     </div>
                 </div>
+
             </div>
             {/*</div>*/}
             {/*// </div>*/}

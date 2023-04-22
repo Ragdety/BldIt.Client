@@ -134,6 +134,7 @@ function SignUp() {
             value={email}
             onChange={(e) => handleInputChange(e)}
             placeholder="Email"
+                 style={{border:"1px solid rgba(0, 0, 0, 0.2)"}}
           />
         </div>
         <div className="input-container">

@@ -1,8 +1,9 @@
 import React from 'react';
 import {Link, useNavigate} from "react-router-dom";
-import {Typography} from "@material-tailwind/react";
+import {button, Typography} from "@material-tailwind/react";
 import useAxiosPrivate from "../../hooks/useAxiosPrivate";
 import {useEffect, useState} from "react";
+import moment from "moment/moment";
 
 const ProjectsList = () => {
   const axiosPrivate = useAxiosPrivate();
@@ -18,6 +19,20 @@ const ProjectsList = () => {
     console.log(response.data.data);
     return response.data.data;
   };
+
+  const projectDelete = async (e, id) => {
+    e.preventDefault();
+    // console.log(e);
+    // console.log(id);
+
+    await axiosPrivate.delete(`/projects/${id}`)
+        .then(response => {
+          window.location.reload();
+        })
+        .catch(error => {
+          console.log(error.response.data);
+        });
+  }
 
   const deleteProject = async (e, id) => {
     e.preventDefault();
@@ -41,7 +56,7 @@ const ProjectsList = () => {
     //  navigate to /Edit Form
     navigate("/Edit");
   };
-  
+
   return (
     <>
       {projectDetails.length ? (
@@ -80,22 +95,25 @@ const ProjectsList = () => {
                 scope="row"
                 className="px-6 py-4 font-light text-gray-900 whitespace-normal overflow-hidden dark:text-white text-left cursor-pointer no-underline"
               >
-                {project.description}
+                {/*<th className="cursor-pointer no-underline">*/}
+                  {project.description}
+                {/*</th>*/}
               </th>
               <th
                 scope="row"
                 className="px-6 py-4 font-light text-gray-900 whitespace-nowrap dark:text-white"
               >
                 <Link className="cursor-pointer no-underline" to="/Build">
-                  {project.createdAt}
+                  {moment(project.createdAt).format('DD MMM, YYYY')}
+                  {/*{project.createdAt}*/}
                 </Link>
               </th>
               <th
                 scope="row"
                 className="px-6 py-4 font-light text-gray-900 whitespace-nowrap dark:text-white sm:rounded-lg"
               >
-                <button className="buttonsDesign" onClick={openEditForm}>Edit</button>
-                <button className="buttonsDesign" onClick={(e)=> deleteProject(e, project.id)}>Delete</button>
+                <button className="buttonsDesign" onClick={() => { window.location.href = `/EditProject/${project.id}` }}>Edit</button>
+                <button className="buttonsDesign" onClick={(e) => { projectDelete(e, project.id) }} >Delete</button>
               </th>
             </tr>
           ))}

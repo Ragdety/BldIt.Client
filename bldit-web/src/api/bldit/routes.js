@@ -66,6 +66,8 @@ export const routes = {
       getGitHubRepos: `${baseRoutes.githubRepos}`,
     }
   },
+  
+  getJobById: "jobs/{jobId}",
 }
 
 export default routes;

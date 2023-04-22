@@ -10,6 +10,7 @@ import ProjectsList from "../components/Projects/ProjectsList";
 import SideBar from "../components/SideBar";
 import "../styles/ProjectsRedesign.css";
 import {useEffect} from "react";
+import BuildWorkers from "../components/BuildWorkers/BuildWorkers";
 
 const Projects = () => {
     // Setting up the background image and height and width
@@ -42,6 +43,7 @@ const Projects = () => {
                     <h1>Projects Dashboard</h1>
                     {/*<button onClick={navigateToCreateProject}>Create Project</button>*/}
                 </div>
+                
 
                 {/*Projects Table*/}
                 <div className="ProjectTableDiv">

@@ -39,7 +39,7 @@ const BuildLogs = () => {
     const join = (buildLogRoom) => connection.start()
         .then(() => connection.invoke("JoinBuildLogRoom", buildLogRoom))
         .then((result) => {
-            console.log(result);
+            //console.log(result);
             const joined = result.joined;
 
             if (!joined) {
@@ -53,7 +53,9 @@ const BuildLogs = () => {
                 return connection.stop();
             }
 
-            console.log(result.logs);
+            //console.log(result.logs);
+            setLogs(result.logs);
+            
             setCurrentRoom(buildLogRoom);
             connection.on("BuildOutputReceived",
                 log => {

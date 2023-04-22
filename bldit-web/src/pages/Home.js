@@ -37,7 +37,10 @@ const Home = () => {
                             <div style={{width: "100%", color: "white", textAlign: "center", fontFamily: "consolas"}}>
                                 <div>
                                     <h1 style={{fontSize:"70px"}}> Auto Mates </h1>
-                                    <p style={{fontSize:"34px"}}> System that allows developers to automate their tasks.</p>
+                                    <p style={{fontSize:"34px"}}>
+                                        System that allows automation of 
+                                        development operations such as test case execution, code compilation, and code deployment.
+                                    </p>
                                     <button className="buttonsDesign" onClick={navigateToProjects}>Create Project</button>
                                 </div>
                             </div>
@@ -59,30 +62,21 @@ const Home = () => {
                                 <div>
                                     <h2>Continuous Integration</h2>
                                     <h4>
-                                        Continuous integration (CI) is a software development practice in
-                                        which developers merge their changes to the main branch many times
-                                        per day.{" "}
+                                        Build and merge code changes frequently.
                                     </h4>
                                 </div>
                                 <hr/>
                                 <div>
                                     <h2>Continuous Testing</h2>
                                     <h4>
-                                        Continuous testing (CT) is a software development process in which
-                                        applications are tested continuously throughout the entire software
-                                        development life cycle (SDLC). The goal of CT is to evaluate
-                                        software quality across the SDLC, providing critical feedback
-                                        earlier and enabling higher-quality and faster deliveries.
+                                        Automate the testing process so that you can detect problems early.
                                     </h4>
                                 </div>
                                 <hr/>
                                 <div>
                                     <h2>Continuous Delivery</h2>
                                     <h4>
-                                        Continuous Delivery is the ability to get changes of all
-                                        types—including new features, configuration changes, bug fixes and
-                                        experiments—into production, or into the hands of users, safely and
-                                        quickly in a sustainable way.
+                                        Automate the deployment process so that you can release new features quickly.
                                     </h4>
                                 </div>
 

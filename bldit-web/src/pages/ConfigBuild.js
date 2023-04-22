@@ -14,7 +14,7 @@ const ConfigBuild = ({buildConfigToCreate, onStepDataChange, scmType}) => {
   
   const addEmptyStep = () => {
     const emptyStep = {
-      stepType: scriptType,
+      type: scriptType,
       command: "",
     };
     
@@ -42,12 +42,13 @@ const ConfigBuild = ({buildConfigToCreate, onStepDataChange, scmType}) => {
   }
 
   const handleScriptTypeChange = (event) => {
+    console.log(event.target.value);
     setScriptType(event.target.value);
     console.log(event.target.value);
   }
   
-  const renderEditor = (stepType, i) => {
-    switch (stepType) {
+  const renderEditor = (type, i) => {
+    switch (type) {
       case "Batch":
         return <AceEditor
           mode="batchfile" theme="dracula" tabSize={2}
@@ -130,7 +131,7 @@ const ConfigBuild = ({buildConfigToCreate, onStepDataChange, scmType}) => {
         </button>
         {buildSteps.map((step, i) => {
           return <div key={i}>
-            {renderEditor(step.stepType, i)}
+            {renderEditor(step.type, i)}
           </div>
         })}
       </div>

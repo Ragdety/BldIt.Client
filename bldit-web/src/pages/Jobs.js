@@ -47,7 +47,7 @@ const Jobs = () => {
                     <div className="ProjectInfoDiv" style={{boxShadow: "0px 0px 15px #438c97", borderRadius:"1rem" }}>
                         <ProjectCard id={projectId}/>
                     </div>
-                    <BuildWorkers/>
+                    {/*<BuildWorkers/>*/}
                 </div>
 
                 <div className="ProjectTableDiv">

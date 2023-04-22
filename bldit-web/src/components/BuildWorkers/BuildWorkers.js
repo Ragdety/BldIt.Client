@@ -77,11 +77,11 @@ const BuildWorkers = () => {
   }, [connection]);
   
   return (
-    <div>
+    <div style={{display:"flex"}}>
       <Typography color="white">Build Workers</Typography>
       {buildWorkers.map((buildWorker, index) => {
         return (
-          <div key={index}>
+          <div key={index} style={{marginLeft:"3%", marginRight:"3%"}}>
             <BuildWorkerCard 
               workerNumber={index}
               buildId={buildWorker.buildId}

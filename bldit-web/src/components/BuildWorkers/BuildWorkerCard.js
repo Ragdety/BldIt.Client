@@ -40,7 +40,8 @@ const BuildWorkerCard = ({workerNumber, buildId, isWorking, buildNumber, jobId})
     <>
       {isWorking ? (
         <>
-          <Card sx={{ maxWidth: 275 }}>
+          {/*sx={{ maxWidth: 275 }}*/}
+          <Card style={{width:"240px"}}>
             <CardContent>
               <Typography sx={{ fontSize: 14 }} color="black" gutterBottom>
                 {jobName}
@@ -49,14 +50,14 @@ const BuildWorkerCard = ({workerNumber, buildId, isWorking, buildNumber, jobId})
                 Build: {buildNumber}
               </Typography>
             </CardContent>
-            <CardActions>
-              <Button size="small" onClick={navigateToLogs}>Logs</Button>
-            </CardActions>
+            {/*<CardActions>*/}
+            {/*  <Button size="small" onClick={navigateToLogs}>Logs</Button>*/}
+            {/*</CardActions>*/}
           </Card>
         </>
       ) : (
         <>
-          <Card sx={{ maxWidth: 275 }}>
+          <Card style={{width:"240px"}}>
             <CardContent>
               <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
                 {workerNumber + 1} - Available

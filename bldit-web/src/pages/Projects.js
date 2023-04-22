@@ -43,11 +43,14 @@ const Projects = () => {
                     <h1>Projects Dashboard</h1>
                     {/*<button onClick={navigateToCreateProject}>Create Project</button>*/}
                 </div>
+                <div className="ProjectTableDiv" style={{marginBottom:"2%", width:"72%"}}>
+                    <BuildWorkers/>
+                </div>
                 
 
                 {/*Projects Table*/}
                 <div className="ProjectTableDiv">
-                    <div className="ProjectTable">
+                    <div className="ProjectTable" style={{maxHeight:"400px"}}>
                         <ProjectsList/>
                     </div>
                     <button className="buttonsDesign" style={{marginTop:"3%"}} onClick={navigateToCreateProject}>Create Project</button>

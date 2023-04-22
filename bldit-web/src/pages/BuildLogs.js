@@ -121,7 +121,8 @@ const BuildLogs = () => {
             .replace("{jobName}", urlArray[5])
             .replace("{buildNumber}", urlArray[7]))
             .then((response) => {
-                console.log(response);
+                // console.log(response.data.logContent.split("\n"));
+                setFileLogs(response.data.logContent.split(/\n/g));
             }).catch((error) => {
             console.log(error);
         });
@@ -170,7 +171,15 @@ const BuildLogs = () => {
                                    maxHeight: "550px"
                                }}>
                                 Logs from build: {buildId}
-                                {fileLogs}
+                                {fileLogs.map((fileLogs, index) => (
+                                        <p key={index}
+                                           ref={logsRef}
+                                           className="mb-3 font-normal text-gray-700 dark:text-gray-400"
+                                           style={{color: "white"}}>
+                                            {fileLogs}
+                                        </p>
+                                    )
+                                )}
                             </p>
                         )
                         : (

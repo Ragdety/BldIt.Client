@@ -7,6 +7,8 @@ import useBldItPrivate from "../../hooks/useAxiosPrivate";
 import moment from "moment";
 import Button from "@mui/material/Button";
 import useAxiosPrivate from "../../hooks/useAxiosPrivate";
+import jobConfig from "../../pages/JobConfig";
+import job from "../../pages/Job";
 
 const JobsList = ({ projectId }) => {
   const axiosPrivate = useAxiosPrivate();
@@ -33,13 +35,20 @@ const JobsList = ({ projectId }) => {
     loadJobs();
   }, []);
 
-  const navigateToJob = (jobName) => {
-    // console.log(jobName.name);
-    navigate(`/projects/${projectId}/jobs/${jobName.name}`);
+  const navToConfigure = async (e, name) => {
+    // navigate(`/projects/${projectId}/jobs/jobConfig`);
+    // e.preventDefault();
+    navigate(`/projects/${projectId}/jobs/${name}/jobconfigedit/`);
   }
 
-  function navToConfigure() {
+  function navToJobCreate() {
     navigate(`/projects/${projectId}/jobs/jobConfig`);
+  }
+
+  function navigateToJob(job) {
+    // console.log(jobs);
+    navigate(`/projects/${projectId}/jobs/${job.name}`);
+
   }
   
   const handleDeleteJob = async (e, id) => {
@@ -136,7 +145,8 @@ const JobsList = ({ projectId }) => {
                     className="px-6 py-4 font-light text-gray-900 whitespace-nowrap dark:text-white"
                   >
                     {/*This should eventually go to job edit page, which would load the job's config (TODO: Implement)*/}
-                    <Button className="cursor-pointer no-underline" onClick={navToConfigure}>
+                    <Button className="cursor-pointer no-underline"
+                            onClick={(e) => { navToConfigure(e, job.name)}}>
                       Configure
                     </Button>
                   </th>
@@ -159,7 +169,7 @@ const JobsList = ({ projectId }) => {
             </div>
           )}
 
-          <button className="buttonsDesign" onClick={navToConfigure}>Create Job</button>
+          <button className="buttonsDesign" onClick={navToJobCreate}>Create Job</button>
 
         </>
       )}

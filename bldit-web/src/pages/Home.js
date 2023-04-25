@@ -69,14 +69,14 @@ const Home = () => {
                                 <div>
                                     <h2>Continuous Testing</h2>
                                     <h4>
-                                        Automate the testing process so that you can detect problems early.
+                                        Automate the testing process and detect problems early.
                                     </h4>
                                 </div>
                                 <hr/>
                                 <div>
                                     <h2>Continuous Delivery</h2>
                                     <h4>
-                                        Automate the deployment process so that you can release new features quickly.
+                                        Automate the deployment process and release new features quickly.
                                     </h4>
                                 </div>
 

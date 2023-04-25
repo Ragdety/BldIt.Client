@@ -121,6 +121,7 @@ function LoginForm() {
           <input
             type="text"
             name="uname"
+            id="userEmail"
             ref={userRef}
             required
             onChange={(e) => handleChange(e, "usernameOrEmail")}
@@ -132,6 +133,7 @@ function LoginForm() {
           <input
             type="password"
             name="pass"
+            id="password"
             required
             onChange={(e) => handleChange(e, "password")}
           />
@@ -139,7 +141,7 @@ function LoginForm() {
         </div>
 
         <div className="input-container">
-          <input type="submit" value="Login"/>
+          <input type="submit" value="Login" id="submit"/>
         </div>
       </form>
 

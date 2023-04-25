@@ -44,6 +44,8 @@ export const routes = {
     getBuilds: `${baseRoutes.builds}`,
     getBuild: `${baseRoutes.builds}/{buildNumber}`,
     getBuildLog: `${baseRoutes.builds}/{buildNumber}/log`,
+    getBuildArtifacts: `${baseRoutes.builds}/{buildNumber}/artifacts`,
+    getBuildArtifact: `${baseRoutes.builds}/{buildNumber}/artifacts/{artifactName}`,
   },
   buildConfigs: {
     createBuildConfig: `${baseRoutes.buildConfigs}`,

@@ -155,16 +155,16 @@ function SideBar({styles, projectId, jobName}) {
                                                        }}/>
                 </li>
                 {window.location.pathname.includes('/') && isNotLoggedIn && (
-                    <li className="sidebar_li"><a href="/SignUp">Sign Up</a></li>
+                    <li className="sidebar_li"><a href="/SignUp" id="signUp">Sign Up</a></li>
                 )}
                 {window.location.pathname.includes('/') && isNotLoggedIn && (
-                    <li className="sidebar_li"><a href="/Login">Login</a></li>
+                    <li className="sidebar_li"><a href="/Login" id="login">Login</a></li>
                 )}
                 {!isNotLoggedIn && (<li className="sidebar_li"><a data-page="" href="/">Home</a></li>)}
                 {!isNotLoggedIn && (<li className="sidebar_li"><a href="/Projects" data-page="projects">Projects</a></li>)}
                 {!isNotLoggedIn && (<li className="sidebar_li"><a href="/CreateProject" data-page="createproject">Create Project</a>
                 </li>)}
-                {!isNotLoggedIn && (<li className="sidebar_li"><a href="/Logout">Logout</a></li>)}
+                {!isNotLoggedIn && (<li className="sidebar_li"><a href="/Logout" id="logOut">Logout</a></li>)}
                 {window.location.pathname.includes(`/jobs/${JobName}`) && !isNotLoggedIn &&(
                     <hr/>
                 )}

@@ -18,6 +18,7 @@ import Job from "../pages/Job";
 import JobConfig from "../pages/JobConfig";
 import JobConfigEdit from "../pages/JobConfigEdit";
 import EditProject from "../pages/EditProject";
+import EditBuildConfig from "./Jobs/Edit/EditBuildConfig";
 
 
 function AppRoutes() {
@@ -47,6 +48,7 @@ function AppRoutes() {
             <Route path="/editproject/:projectId" element={<EditProject />} />
             <Route path="/projects/:projectId/jobs/:jobName" element={<Job />} />
             <Route path="/projects/:projectId/jobs/jobConfig" element={<JobConfig />} />
+            <Route path="/projects/:projectId/jobs/:jobName/editBuildConfig" element={<EditBuildConfig />} />
             <Route path="/projects/:projectId/jobs/:jobName/jobConfigEdit/" element={<JobConfigEdit />} />
             <Route path="/projects/:projectId/jobs/:jobName/builds/:buildNumber/logs/:buildId" element={<BuildLogs />} />
           </Route>

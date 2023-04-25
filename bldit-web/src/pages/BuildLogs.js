@@ -6,10 +6,9 @@ import BannerImage from "../assets/pic.png";
 import {useParams} from "react-router-dom";
 import BuildCardApi from "../components/Builds/BuildCardApi";
 import SideBar from "../components/SideBar";
-import ProjectsList from "../components/Projects/ProjectsList";
-import AceEditor from "react-ace";
 import routes from "../api/bldit/routes";
 import useBldItPrivate from "../hooks/useAxiosPrivate";
+import ArtifactsList from "../components/ArtifactsList";
 
 const BuildLogs = () => {
     const buildStreamURL = 'http://localhost:5005/buildStream';
@@ -118,24 +117,60 @@ const BuildLogs = () => {
             console.log(error);
         });
 
-        bldItPrivate.get(routes.builds.getBuildLog
-            .replace("{projectId}", urlArray[3])
-            .replace("{jobName}", urlArray[5])
-            .replace("{buildNumber}", urlArray[7]))
-            .then((response) => {
-                // console.log(response.data.logContent.split("\n"));
-                setFileLogs(response.data.logContent.split(/\n/g));
-            }).catch((error) => {
-            console.log(error);
-        });
-        // const loadProject = async () => {
-
-        // }
-        //
-        // loadProject();
+      bldItPrivate.get(routes.builds.getBuildArtifacts
+        .replace("{projectId}", projectId)
+        .replace("{jobName}", jobName)
+        .replace("{buildNumber}", buildNumber))
+        .then((response) => {
+          console.log(response.data);
+            //setFileList(response.data);
+          }
+        ).catch((error) => {
+        console.log(error);
+      });
+        
     }, []);
+    
+    useEffect(() => {
+      const url = window.location.href;
+      const urlArray = url.split(/\/\/|\?|\/|\./);
+      
+      bldItPrivate.get(routes.builds.getBuildLog
+        .replace("{projectId}", urlArray[3])
+        .replace("{jobName}", urlArray[5])
+        .replace("{buildNumber}", urlArray[7]))
+        .then((response) => {
+          //console.log(response.data);
+          setFileLogs(response.data.logEntries);
+        }).catch((error) => {
+        console.log(error);
+      });
+    }, [buildStatus]);
 
-    return (
+  function downloadArtifacts() {
+    bldItPrivate.get(routes.builds.getBuildArtifacts
+      .replace("{projectId}", projectId)
+      .replace("{jobName}", jobName)
+      .replace("{buildNumber}", buildNumber), 
+      { responseType: "blob" })
+      .then((response) => {
+        console.log(response.data);
+        console.log(response.headers);
+        //const filename = response.headers["content-disposition"].match(/filename="(.+)"/)[1];
+        const url = window.URL.createObjectURL(new Blob([response.data]));
+        const link = document.createElement("a");
+        
+        link.href = url;
+        link.setAttribute("download", "artifacts.zip");
+        document.body.appendChild(link);
+        link.click();
+      }
+    ).catch((error) => {
+      console.log(error);
+    });
+  }
+
+  return (
         <div className="mainContent">
             {/*SideBar*/}
             <div style={{width: "10%", height: "100%", display: "flex"}}>
@@ -164,25 +199,28 @@ const BuildLogs = () => {
                 }}>
 
                     {buildStatus === "Finished" ? (
-
-                            <p className="mb-3 font-normal text-gray-700 dark:text-gray-400 overflow-y-auto max-h-72"
-                               style={{
-                                   paddingLeft: "1%",
-                                   color: "white",
-                                   fontFamily: "Courier New",
-                                   maxHeight: "550px"
-                               }}>
-                                Logs from build: {buildId}
-                                {fileLogs.map((fileLogs, index) => (
-                                        <p key={index}
-                                           ref={logsRef}
-                                           className="mb-3 font-normal text-gray-700 dark:text-gray-400"
-                                           style={{color: "white"}}>
-                                            {fileLogs}
-                                        </p>
-                                    )
-                                )}
-                            </p>
+                      <>
+                        <p className="mb-3 font-normal text-gray-700 dark:text-gray-400 overflow-y-auto max-h-72"
+                           style={{
+                             paddingLeft: "1%",
+                             color: "white",
+                             fontFamily: "Courier New",
+                             maxHeight: "550px"
+                           }}>
+                          Logs from build: {buildId}
+                          {fileLogs && fileLogs.map((fileLogs, index) => (
+                              <p key={index}
+                                 ref={logsRef}
+                                 className="mb-3 font-normal text-gray-700 dark:text-gray-400"
+                                 style={{color: "white"}}>
+                                {fileLogs}
+                              </p>
+                            )
+                          )}
+                        </p>
+                        <button className="buttonsDesign" 
+                                onClick={downloadArtifacts}>Download Artifacts</button>
+                      </>
                         )
                         : (
                             <p className="mb-3 font-normal text-gray-700 dark:text-gray-400 overflow-y-auto max-h-72"
@@ -207,36 +245,6 @@ const BuildLogs = () => {
                 </div>
             </div>
         </div>
-
-        // <div className="content">
-        //   <div className="content">
-        //     <Navbar />
-        //     <div className="home" style={{ backgroundImage: `url(${BannerImage})` }}>
-        //       <div className="flex items-center justify-center h-screen">
-        //         <BuildCardApi projectId={projectId} jobName={jobName} buildNumber={buildNumber} />
-        //         <div
-        //           className="max-w-sm max-h-72 w-full p-6 text-center bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-        //           <p>
-        //             <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-        //               Realtime Logs
-        //             </h5>
-        //           </p>
-        //           <p className="mb-3 font-normal text-gray-700 dark:text-gray-400 overflow-y-auto max-h-72" >
-        //             Logs from build: {buildId}
-        //             {logs.map((log, index) => (
-        //                 <p key={index}
-        //                    ref={logsRef}
-        //                    className="mb-3 font-normal text-gray-700 dark:text-gray-400">
-        //                   {log}
-        //                 </p>
-        //               )
-        //             )}
-        //           </p>
-        //         </div>
-        //       </div>
-        //     </div>
-        //   </div>
-        // </div>
     );
 };
 

@@ -159,7 +159,7 @@ function SignUp() {
         </div>
 
         <div className="input-container">
-          <input type="submit" value="Sign Up" />
+          <input type="submit" value="Sign Up" id="submit"/>
         </div>
       </form>
       {error && (
